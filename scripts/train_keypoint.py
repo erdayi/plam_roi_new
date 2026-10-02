@@ -54,6 +54,8 @@ def main():
     ap.add_argument("--lambda_topo", type=float, default=0.05)
     ap.add_argument("--num_workers", type=int, default=4)
     ap.add_argument("--iters", type=int, default=0, help=">0 时每 epoch 截断 (冒烟)")
+    ap.add_argument("--save_every", type=int, default=1, help="每 N 个 epoch 存 last.pt")
+    ap.add_argument("--no_resume", action="store_true", help="忽略 last.pt 从零重训")
     args = ap.parse_args()
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -90,13 +92,29 @@ def main():
     sched = torch.optim.lr_scheduler.CosineAnnealingLR(opt, T_max=args.epochs)
 
     csv_fp = out / "train_log.csv"
-    with open(csv_fp, "w", newline="", encoding="utf-8") as f:
-        csv.writer(f).writerow(
-            ["epoch", "loss", "topo", "nle_mean", "nle_p1", "nle_p2",
-             "sr5_all", "sr10_all", "sr15_all"])
+    if not csv_fp.exists():
+        with open(csv_fp, "w", newline="", encoding="utf-8") as f:
+            csv.writer(f).writerow(
+                ["epoch", "loss", "topo", "nle_mean", "nle_p1", "nle_p2",
+                 "sr5_all", "sr10_all", "sr15_all"])
 
-    best_sr = -1.0
-    for ep in range(args.epochs):
+    # ---- 断点续训: last.pt 每 epoch 自动保存, 重跑同命令自动恢复 ----
+    start_epoch, best_sr = 0, -1.0
+    last_fp = out / "last.pt"
+    if last_fp.exists() and not args.no_resume:
+        ck = torch.load(last_fp, map_location="cpu", weights_only=False)
+        model.load_state_dict(ck["model"])
+        opt.load_state_dict(ck["opt"])
+        sched.load_state_dict(ck["sched"])
+        start_epoch = ck["epoch"] + 1
+        best_sr = ck["best_sr"]
+        print(f"[resume] 从 epoch {ck['epoch']} 恢复 (best SR@10 {best_sr:.4f}), "
+              f"继续到 {args.epochs}")
+        if args.epochs <= ck["epoch"]:
+            print("[resume] 已达目标 epochs, 无需继续。加 --epochs 更大值或 --no_resume 重训。")
+            return
+
+    for ep in range(start_epoch, args.epochs):
         model.train()
         tot_loss, tot_topo, n = 0.0, 0.0, 0
         for it, (img, k_bin, k_norm) in enumerate(train_dl):
@@ -144,7 +162,13 @@ def main():
               f"NLE {m['nle_mean']:.4f} SR@10 {m['sr10_all']:.4f}")
         if m["sr10_all"] > best_sr:
             best_sr = m["sr10_all"]
-            torch.save({"model": model.state_dict(), "args": vars(args), "num_keypoints": K}, out / "best.pt")
+            torch.save({"model": model.state_dict(), "args": vars(args), "num_keypoints": K,
+                        "epoch": ep}, out / "best.pt")
+        # 每 epoch 快照 (断点续训用; 含优化器/调度器状态)
+        if (ep + 1) % args.save_every == 0 or ep == args.epochs - 1:
+            torch.save({"model": model.state_dict(), "opt": opt.state_dict(),
+                        "sched": sched.state_dict(), "epoch": ep, "best_sr": best_sr,
+                        "args": vars(args), "num_keypoints": K}, last_fp)
     print(f"best SR@10 {best_sr:.4f} -> {out / 'best.pt'}")
 
 
