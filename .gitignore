@@ -1,0 +1,13 @@
+# 大文件与本地产物不入库
+third_party/
+runs/
+data/
+incoming/
+*.pt
+*.pth
+*.ckpt
+*.onnx
+__pycache__/
+*.pyc
+*.log
+.ipynb_checkpoints/
