@@ -115,9 +115,12 @@ def main():
             print("[resume] 已达目标 epochs, 无需继续。加 --epochs 更大值或 --no_resume 重训。")
             return
 
+    import time
     for ep in range(start_epoch, args.epochs):
         model.train()
         tot_loss, tot_topo, n = 0.0, 0.0, 0
+        t0 = time.time()
+        n_total = len(train_dl)
         for it, (img, k_bin, k_norm) in enumerate(train_dl):
             if args.iters and it >= args.iters:
                 break
@@ -143,6 +146,10 @@ def main():
             loss.backward()
             opt.step()
             tot_loss, tot_topo, n = tot_loss + l_main.item(), tot_topo + l_t.item(), n + 1
+            if (it + 1) % 50 == 0 or it + 1 == n_total:  # 逐迭代进度
+                dt = time.time() - t0
+                print(f"  [ep {ep:03d}] it {it+1}/{n_total} "
+                      f"loss {tot_loss/n:.3f} {n/dt:.1f} img/s", flush=True)
         sched.step()
 
         # 验证
