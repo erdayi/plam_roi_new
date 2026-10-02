@@ -29,7 +29,7 @@ from palmroi_kpt.recog.metrics_keypoint import nle_metrics
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--ckpt", required=True)
-    ap.add_argument("--data_root", default=r"D:\datasetoi\MobileNet_Data")
+    ap.add_argument("--data_root", default="D:/dataset/roi/MobileNet_Data")
     ap.add_argument("--out_dir", default=None)
     ap.add_argument("--vis", type=int, default=24, help="可视化张数")
     args = ap.parse_args()
