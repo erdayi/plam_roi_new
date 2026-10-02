@@ -24,22 +24,19 @@ import cv2
 import numpy as np
 
 
-def geometric_validity(kpts: dict) -> tuple[bool, str]:
-    """E1: 三点几何合理性. kpts: {valley1:[x,y], valley2:[x,y], center:[x,y]}."""
-    v1, v2, c = (np.array(kpts[k], float) for k in ("valley1", "valley2", "center"))
-    d12 = np.linalg.norm(v1 - v2)
-    d1c = np.linalg.norm(v1 - c)
-    d2c = np.linalg.norm(v2 - c)
-    if min(d12, d1c, d2c) < 5:
-        return False, "points_too_close"
-    # 谷点间距应与谷-心距离同量级 (0.3 ~ 3.0)
-    ratio = d12 / max((d1c + d2c) / 2, 1e-6)
-    if not (0.3 < ratio < 3.0):
-        return False, f"bad_ratio_{ratio:.2f}"
-    # 谷点应在掌心上方 (y 更小; 允许 ±60° 倾斜 -> 用点积判)
-    up = (c - v1) + (c - v2)          # 合向量指向掌心反方向
-    if up[1] <= 0:
-        return False, "valleys_not_above_center"
+def geometric_validity(valleys: list, img_shape=None) -> tuple[bool, str]:
+    """E1: 两谷点几何合理性. valleys: [[x,y],[x,y]] 原图像素坐标."""
+    v = np.array(valleys, float)
+    if v.shape != (2, 2):
+        return False, f"bad_shape_{v.shape}"
+    d12 = float(np.linalg.norm(v[0] - v[1]))
+    if d12 < 10:
+        return False, "valleys_too_close"
+    if img_shape is not None:
+        h, w = img_shape[:2]
+        diag = float(np.hypot(h, w))
+        if not (0.03 * diag < d12 < 0.8 * diag):
+            return False, f"valley_dist_out_of_range_{d12/diag:.2f}diag"
     return True, "ok"
 
 
@@ -56,8 +53,7 @@ def wilor_prelabel(img, detector):
     kp = np.array(k.keypoints, float)
     valley1 = ((kp[5] + kp[9]) / 2).tolist()
     valley2 = ((kp[13] + kp[17]) / 2).tolist()
-    center = kp.mean(axis=0).tolist()
-    return {"valley1": valley1, "valley2": valley2, "center": center}
+    return [valley1, valley2]
 
 
 def main():
@@ -93,7 +89,9 @@ def main():
     disagree = []
     for i, img_fp in enumerate(pairs):
         ann = json.loads(img_fp.with_suffix(".json").read_text(encoding="utf-8"))
-        ok, reason = geometric_validity(ann)
+        valleys = ann["valleys"] if "valleys" in ann else ann
+        img_for_shape = cv2.imread(str(img_fp))
+        ok, reason = geometric_validity(valleys, img_for_shape.shape if img_for_shape is not None else None)
         if ok:
             stats["geo_ok"] += 1
         else:
@@ -102,13 +100,12 @@ def main():
             disagree.append(f"{img_fp}\tE1:{reason}")
             continue
         if detector is not None:
-            img = cv2.imread(str(img_fp))
-            pre = wilor_prelabel(img, detector)
+            pre = wilor_prelabel(img_for_shape, detector)
             if pre is None:
                 continue
             stats["wilor_compared"] += 1
-            d = max(np.linalg.norm(np.array(ann[k]) - np.array(pre[k]))
-                    for k in ("valley1", "valley2", "center"))
+            d = max(np.linalg.norm(np.array(valleys[j]) - np.array(pre[j]))
+                    for j in (0, 1))
             if d <= args.agree_px:
                 stats["agree"] += 1
             else:

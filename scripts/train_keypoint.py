@@ -20,7 +20,7 @@ import numpy as np
 import torch
 from torch.utils.data import DataLoader
 
-from palmroi_kpt.datasets.keypoint_dataset import PalmKeypointDataset, POINT_NAMES
+from palmroi_kpt.datasets.keypoint_dataset import PalmKeypointDataset
 from palmroi_kpt.models.keypoint_net import PalmKeypointNet
 from palmroi_kpt.models.head_simcc import simcc_loss
 from palmroi_kpt.losses.topology import PalmTopologyLoss
@@ -63,14 +63,16 @@ def main():
     random.seed(0)
     print(f"device: {device}, torch {torch.__version__}")
 
-    train_ds = PalmKeypointDataset(args.data_root, args.input_size, args.simcc_res, train=True)
+    base_train = PalmKeypointDataset(args.data_root, args.input_size, args.simcc_res, train=True)
+    K = base_train.num_keypoints
+    print(f"num_keypoints = {K}")
     if args.val_root:
+        train_ds = base_train
         val_ds = PalmKeypointDataset(args.val_root, args.input_size, args.simcc_res, train=False)
     else:
         _, tr_idx, va_idx = split_train_val(args.data_root)
         print(f"split: train {len(tr_idx)} / val {len(va_idx)}")
-        train_ds = torch.utils.data.Subset(
-            PalmKeypointDataset(args.data_root, args.input_size, args.simcc_res, train=True), tr_idx)
+        train_ds = torch.utils.data.Subset(base_train, tr_idx)
         val_ds = torch.utils.data.Subset(
             PalmKeypointDataset(args.data_root, args.input_size, args.simcc_res, train=False), va_idx)
     print(f"train {len(train_ds)} / val {len(val_ds)}")
@@ -80,17 +82,18 @@ def main():
     val_dl = DataLoader(val_ds, batch_size=args.batch_size, shuffle=False,
                         num_workers=args.num_workers)
 
-    model = PalmKeypointNet(args.backbone, pretrained=True, num_keypoints=3,
+    model = PalmKeypointNet(args.backbone, pretrained=True, num_keypoints=K,
                             input_size=args.input_size, simcc_res=args.simcc_res).to(device)
-    topo = PalmTopologyLoss()
+    topo = PalmTopologyLoss() if K == 3 else None  # 三角形拓扑需要 3 点
+
     opt = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=5e-4)
     sched = torch.optim.lr_scheduler.CosineAnnealingLR(opt, T_max=args.epochs)
 
     csv_fp = out / "train_log.csv"
     with open(csv_fp, "w", newline="", encoding="utf-8") as f:
         csv.writer(f).writerow(
-            ["epoch", "loss", "topo", "nle_mean", "nle_valley1", "nle_valley2",
-             "nle_center", "sr5_all", "sr10_all", "sr15_all"])
+            ["epoch", "loss", "topo", "nle_mean", "nle_p1", "nle_p2",
+             "sr5_all", "sr10_all", "sr15_all"])
 
     best_sr = -1.0
     for ep in range(args.epochs):
@@ -103,10 +106,20 @@ def main():
             k_bin = k_bin.to(device)
             k_norm = k_norm.to(device)
             sx, sy, _ = model(img)
-            l_main = simcc_loss(sx, sy, k_bin[..., 0], k_bin[..., 1], sigma=args.sigma)
+            gt_x, gt_y = k_bin[..., 0], k_bin[..., 1]
+            l_id = simcc_loss(sx, sy, gt_x, gt_y, sigma=args.sigma, reduction="none")
+            if K == 2:  # 无序谷点对: identity/swap 逐样本取较小者
+                l_sw = simcc_loss(sx, sy, gt_y, gt_x, sigma=args.sigma, reduction="none")
+                l_main = torch.minimum(l_id, l_sw).mean()
+            else:
+                l_main = l_id.mean()
             pred_norm = model.head.decode(sx, sy) / args.simcc_res
-            l_t = topo(pred_norm, k_norm)
-            loss = l_main + args.lambda_topo * l_t
+            if topo is not None:
+                l_t = topo(pred_norm, k_norm)
+                loss = l_main + args.lambda_topo * l_t
+            else:
+                l_t = torch.zeros((), device=device)
+                loss = l_main
             opt.zero_grad()
             loss.backward()
             opt.step()
@@ -126,13 +139,12 @@ def main():
         with open(csv_fp, "a", newline="", encoding="utf-8") as f:
             csv.writer(f).writerow([ep, f"{tot_loss/max(n,1):.4f}", f"{tot_topo/max(n,1):.4f}"]
                                    + [f"{m[k]:.4f}" for k in
-                                      ["nle_mean", "nle_valley1", "nle_valley2", "nle_center",
-                                       "sr5_all", "sr10_all", "sr15_all"]])
+                                      ["nle_mean", "nle_p1", "nle_p2", "sr5_all", "sr10_all", "sr15_all"]])
         print(f"ep {ep:03d} loss {tot_loss/max(n,1):.4f} topo {tot_topo/max(n,1):.4f} "
               f"NLE {m['nle_mean']:.4f} SR@10 {m['sr10_all']:.4f}")
         if m["sr10_all"] > best_sr:
             best_sr = m["sr10_all"]
-            torch.save({"model": model.state_dict(), "args": vars(args)}, out / "best.pt")
+            torch.save({"model": model.state_dict(), "args": vars(args), "num_keypoints": K}, out / "best.pt")
     print(f"best SR@10 {best_sr:.4f} -> {out / 'best.pt'}")
 
 

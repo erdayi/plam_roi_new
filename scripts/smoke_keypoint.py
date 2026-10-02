@@ -26,7 +26,7 @@ def make_synthetic(root: Path, n=40):
         scale = rng.uniform(0.6, 1.1)
         cx, cy = rng.uniform(200, 440), rng.uniform(180, 320)
         # 以标准姿态定义: 掌心(0,0), 谷点(-70,-80)/(70,-80), 指向上
-        pts_local = {"valley1": (-70, -80), "valley2": (70, -80), "center": (0, 0)}
+        pts_local = [[-70, -80], [70, -80]]  # 2 谷点 (与 MobileNet_Data 约定一致)
         th = np.deg2rad(ang)
         R = np.array([[np.cos(th), -np.sin(th)], [np.sin(th), np.cos(th)]]) * scale
 
@@ -40,7 +40,7 @@ def make_synthetic(root: Path, n=40):
             tip = to_img((fx, -170))
             base = to_img((fx, -70))
             cv2.line(img, base, tip, (90, 90, 90), int(34 * scale))
-        ann = {k: list(to_img(v)) for k, v in pts_local.items()}
+        ann = {"valleys": [list(to_img(v)) for v in pts_local]}
         cv2.imwrite(str(root / f"{i:05d}.jpg"), img)
         (root / f"{i:05d}.json").write_text(json.dumps(ann), encoding="utf-8")
     print(f"synthetic dataset: {n} pairs -> {root}")

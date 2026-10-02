@@ -21,7 +21,7 @@ import numpy as np
 import torch
 from torch.utils.data import DataLoader
 
-from palmroi_kpt.datasets.keypoint_dataset import PalmKeypointDataset, POINT_NAMES
+from palmroi_kpt.datasets.keypoint_dataset import PalmKeypointDataset
 from palmroi_kpt.models.keypoint_net import PalmKeypointNet
 from palmroi_kpt.recog.metrics_keypoint import nle_metrics
 
@@ -39,12 +39,13 @@ def main():
     device = "cuda" if torch.cuda.is_available() else "cpu"
     ckpt = torch.load(args.ckpt, map_location="cpu", weights_only=False)
     targs = ckpt["args"]
-    model = PalmKeypointNet(targs["backbone"], pretrained=False, num_keypoints=3,
+    ds = PalmKeypointDataset(args.data_root, targs["input_size"], targs["simcc_res"], train=False)
+    K = ckpt.get("num_keypoints", ds.num_keypoints)
+    model = PalmKeypointNet(targs["backbone"], pretrained=False, num_keypoints=K,
                             input_size=targs["input_size"], simcc_res=targs["simcc_res"]).to(device)
     model.load_state_dict(ckpt["model"])
     model.eval()
 
-    ds = PalmKeypointDataset(args.data_root, targs["input_size"], targs["simcc_res"], train=False)
     dl = DataLoader(ds, batch_size=64, num_workers=2)
     preds, gts = [], []
     vis_saved = 0
@@ -67,7 +68,7 @@ def main():
                     ann = json.loads(Path(json_fp).read_text(encoding="utf-8"))
                     raw = cv2.resize(raw, (targs["input_size"],) * 2)
                     scale = targs["simcc_res"] / targs["input_size"]
-                    for i, name in enumerate(POINT_NAMES):
+                    for i in range(K):
                         gx = int(k_norm[j, i, 0] * targs["input_size"])
                         gy = int(k_norm[j, i, 1] * targs["input_size"])
                         px = int(p[j, i, 0] / scale)
