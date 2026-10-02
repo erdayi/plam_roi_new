@@ -6,7 +6,7 @@
 ## Step 0 环境准备(一次性)
 
 ```bash
-git clone <仓库地址> roi-new
+git clone https://github.com/erdayi/plam_roi_new.git roi-new
 cd roi-new
 pip install -r requirements.txt
 ```
