@@ -54,7 +54,8 @@ def main():
     ap.add_argument("--lambda_topo", type=float, default=0.05)
     ap.add_argument("--num_workers", type=int, default=4)
     ap.add_argument("--iters", type=int, default=0, help=">0 时每 epoch 截断 (冒烟)")
-    ap.add_argument("--save_every", type=int, default=1, help="每 N 个 epoch 存 last.pt")
+    ap.add_argument("--save_every", type=int, default=5,
+                    help="每 N 个 epoch 存 last.pt (覆盖写, 磁盘占用恒定; 1=最细粒度)")
     ap.add_argument("--no_resume", action="store_true", help="忽略 last.pt 从零重训")
     args = ap.parse_args()
 
