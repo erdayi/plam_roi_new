@@ -70,18 +70,26 @@ class PalmKeypointNet(nn.Module):
 
     @staticmethod
     def _safe_build(builder, pretrained: bool, what: str):
-        """预训练权重下载失败(内网/SSL 被断)时自动降级为随机初始化, 不阻塞训练."""
+        """预训练权重下载: 走实验室代理; SSL 失败自动重试跳过证书校验; 仍失败则降级随机初始化."""
+        from palmroi_kpt.netenv import apply_default_proxy
+        apply_default_proxy()
         if not pretrained:
             return builder(weights=None)
         try:
             return builder(weights="DEFAULT")
         except Exception as e:
             print(f"[WARNING] {what} 预训练权重下载失败({type(e).__name__}), "
-                  f"降级为随机初始化。")
-            print("  手动解决: 把对应 .pth 放入 %USERPROFILE%\\.cache\\torch\\hub\\checkpoints\\")
-            print("  resnet18 -> resnet18-f37072fd.pth")
-            print("  mobilenet_v3_small -> mobilenet_v3_small-047dcff4.pth")
-            return builder(weights=None)
+                  f"重试: 跳过 SSL 证书校验...")
+            import ssl
+            ssl._create_default_https_context = ssl._create_unverified_context
+            try:
+                return builder(weights="DEFAULT")
+            except Exception as e2:
+                print(f"[WARNING] 重试仍失败({type(e2).__name__}), 降级为随机初始化。")
+                print("  手动解决: 把对应 .pth 放入 %USERPROFILE%\\.cache\\torch\\hub\\checkpoints\\")
+                print("  resnet18 -> resnet18-f37072fd.pth")
+                print("  mobilenet_v3_small -> mobilenet_v3_small-047dcff4.pth")
+                return builder(weights=None)
 
     @classmethod
     def _build_resnet18(cls, pretrained: bool):
