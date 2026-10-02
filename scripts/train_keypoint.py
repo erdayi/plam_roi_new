@@ -65,6 +65,7 @@ def main():
     torch.manual_seed(0)
     random.seed(0)
     print(f"device: {device}, torch {torch.__version__}")
+    torch.backends.cudnn.benchmark = True  # 输入尺寸固定, 卷积自动调优
 
     base_train = PalmKeypointDataset(args.data_root, args.input_size, args.simcc_res, train=True)
     K = base_train.num_keypoints
@@ -148,8 +149,9 @@ def main():
             tot_loss, tot_topo, n = tot_loss + l_main.item(), tot_topo + l_t.item(), n + 1
             if (it + 1) % 50 == 0 or it + 1 == n_total:  # 逐迭代进度
                 dt = time.time() - t0
+                n_img = n * (img.shape[0] if it + 1 < n_total or not args.iters else args.batch_size)
                 print(f"  [ep {ep:03d}] it {it+1}/{n_total} "
-                      f"loss {tot_loss/n:.3f} {n/dt:.1f} img/s", flush=True)
+                      f"loss {tot_loss/n:.3f} {n_img/max(dt,1e-6):.1f} img/s", flush=True)
         sched.step()
 
         # 验证
