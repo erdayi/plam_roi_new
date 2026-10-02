@@ -39,7 +39,8 @@ def split_train_val(root: str, val_fraction=0.1, seed=0):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--data_root", required=True, help="图像+同名json 的数据根目录")
+    ap.add_argument("--data_root", default=r"D:\dataset\roi\MobileNet_Data",
+                    help="图像+同名json 的数据根目录 (默认已写死实验室路径)")
     ap.add_argument("--val_root", default=None, help="独立验证集; 不给则从 data_root 按 10%% 切")
     ap.add_argument("--out_dir", default="runs/m2")
     ap.add_argument("--backbone", default="resnet18",

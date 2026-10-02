@@ -62,7 +62,7 @@ def wilor_prelabel(img, detector):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--data_root", required=True)
+    ap.add_argument("--data_root", default=r"D:\datasetoi\MobileNet_Data")
     ap.add_argument("--out_dir", required=True)
     ap.add_argument("--wilor", action="store_true", help="加跑 WiLoR 预标对比 (需 GPU)")
     ap.add_argument("--agree_px", type=float, default=15.0, help="E2 一致判定阈值 (像素)")

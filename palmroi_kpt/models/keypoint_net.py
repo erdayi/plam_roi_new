@@ -48,13 +48,11 @@ class PalmKeypointNet(nn.Module):
         self.backbone_name = backbone
         self.use_seg = use_seg
         if backbone == "resnet18":
-            m = torchvision.models.resnet18(
-                weights="DEFAULT" if pretrained else None)
+            m = self._build_resnet18(pretrained)
             self.feat = nn.Sequential(*list(m.children())[:-2])  # (N,512,h/32,w/32)
             c = 512
         elif backbone == "mobilenet_v3_small":
-            m = torchvision.models.mobilenet_v3_small(
-                weights="DEFAULT" if pretrained else None)
+            m = self._build_mobilenet(pretrained)
             self.feat = m.features
             c = 576
         else:
@@ -69,6 +67,30 @@ class PalmKeypointNet(nn.Module):
         self.head = SimCCKeypointHead(
             in_channels=head_in, num_keypoints=num_keypoints,
             simcc_x_res=simcc_res, simcc_y_res=simcc_res)
+
+    @staticmethod
+    def _safe_build(builder, pretrained: bool, what: str):
+        """预训练权重下载失败(内网/SSL 被断)时自动降级为随机初始化, 不阻塞训练."""
+        if not pretrained:
+            return builder(weights=None)
+        try:
+            return builder(weights="DEFAULT")
+        except Exception as e:
+            print(f"[WARNING] {what} 预训练权重下载失败({type(e).__name__}), "
+                  f"降级为随机初始化。")
+            print("  手动解决: 把对应 .pth 放入 %USERPROFILE%\\.cache\\torch\\hub\\checkpoints\\")
+            print("  resnet18 -> resnet18-f37072fd.pth")
+            print("  mobilenet_v3_small -> mobilenet_v3_small-047dcff4.pth")
+            return builder(weights=None)
+
+    @classmethod
+    def _build_resnet18(cls, pretrained: bool):
+        return cls._safe_build(torchvision.models.resnet18, pretrained, "resnet18")
+
+    @classmethod
+    def _build_mobilenet(cls, pretrained: bool):
+        return cls._safe_build(torchvision.models.mobilenet_v3_small, pretrained,
+                               "mobilenet_v3_small")
 
     def forward(self, x):
         f = self.feat(x)
