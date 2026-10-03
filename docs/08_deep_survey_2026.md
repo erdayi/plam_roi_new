@@ -104,7 +104,8 @@
 | R2 | 质量门控改用**认知不确定性**(MC-Dropout 多次前向),替代 MagFace 方案 | kpt_03 (2026) | eval 脚本加不确定性输出 |
 | R3 | **光度增广降权**(ColorJitter 减半),几何增广保持——细粒度纹理生物特征忌强光度扰动 | bio_01 AGVBench + kpt_05 | train_keypoint 增广参数 |
 | R4 | 自训练扩充采用**自适应 keypoint masking + 置信度课程**(非朴素伪标签) | ssl_01 + PACL | 自训练阶段实现 |
-| R5 | 合成数据升级路径:**谷点结构可控生成**(FVeinSyn/PVTree 式解耦),合成即真值 | bio_02/bio_06 | 数据侧 Phase 2 |
+| R5 | 合成数据:不自建生成器,**直接接入组内资产**(RPG-Palm/PVTree/Canny2Palm 均为贾伟组+腾讯的组内工作且有公开代码)作为 ROI 训练数据扩充源 | bio_02/bio_06 | 数据侧 Phase 2 |
+| R7 | **论文定位修正(2026-10-02 用户确认):PVTree/FVeinSyn/PKLNet/ROI3Net/ERAlign 均为本课题组(合工大贾伟组)工作**。因此:①新颖性需同时越过组内前作 PKLNet/ROI3Net(SimCC 直接监督/拓扑约束/顺序不变匹配/LUPI 先验/跨域协议/人脸迁移,均非组内前作所有);②2 万张 GT 来自组内 PKL 标注工具,质检 harness 定位为"组内工具 vs 外部模型(WiLoR)一致性审计";③合成数据为组内协同而非自研 | 组内事实核对 | 论文写作定位 |
 | R6 | related work 必引:GKDT(2026 通用关键点大模型)+ Foundation-Model-Era 分割综述 + AGVBench | kpt_07/seg_05/bio_01 | 论文写作 |
 
 ## 七、调研规模与可复现性
