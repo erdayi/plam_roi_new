@@ -19,6 +19,9 @@ import cv2
 import numpy as np
 import torch
 from torch.utils.data import Dataset
+from PIL import Image
+
+Image.MAX_IMAGE_PIXELS = None  # 掌纹采集存在 1 亿像素级原图, 关闭 PIL 防炸弹上限
 
 EXCLUDE_DIRS = {"visualization"}
 
@@ -80,15 +83,44 @@ class PalmKeypointDataset(Dataset):
     def __len__(self):
         return len(self.samples)
 
+    def _imread_scaled(self, img_fp: Path):
+        """读图; 超大图 (>2x max_side) 用降分辨率解码, 防止单图打爆内存."""
+        from PIL import Image
+        try:
+            with Image.open(img_fp) as im:  # 只读文件头, 获取尺寸
+                w0, h0 = im.size
+        except Exception:
+            img = cv2.imread(str(img_fp))
+            return img, (img.shape[0], img.shape[1]) if img is not None else (0, 0)
+        if max(h0, w0) <= self.max_side * 2:
+            img = cv2.imread(str(img_fp))
+            return (img, (h0, w0)) if img is not None else (None, (h0, w0))
+        # 超大图: 选择合适的降采样档位 (1/8 -> 1/4 -> 1/2), 解码内存降低 64/16/4 倍
+        for flag, div in ((cv2.IMREAD_REDUCED_COLOR_8, 8),
+                          (cv2.IMREAD_REDUCED_COLOR_4, 4),
+                          (cv2.IMREAD_REDUCED_COLOR_2, 2)):
+            if max(h0, w0) / div <= self.max_side * 2:
+                img = cv2.imread(str(img_fp), flag)
+                if img is not None:
+                    return img, (h0, w0)
+        img = cv2.imread(str(img_fp))
+        return (img, (h0, w0)) if img is not None else (None, (h0, w0))
+
     def _load(self, idx):
         img_fp, _ = self.samples[idx]
-        img = cv2.imread(str(img_fp))
-        kpts = self.kpts[idx].copy()
+        kpts = self.kpts[idx].copy()      # 原图像素坐标
+        img, (h0, w0) = self._imread_scaled(img_fp)
+        if img is None:
+            raise RuntimeError(f"unreadable image: {img_fp}")
         h, w = img.shape[:2]
+        # 若解码时降了分辨率, 坐标同步缩放
+        kpts[:, 0] *= w / w0
+        kpts[:, 1] *= h / h0
         scale = min(1.0, self.max_side / max(h, w))
         if scale < 1.0:
             img = cv2.resize(img, (int(w * scale), int(h * scale)))
             kpts *= scale
+            h, w = img.shape[:2]   # 同步为缩放后的尺寸 (供增广/坐标归一化使用)
         return img, kpts, (h, w)
 
     def __getitem__(self, idx):
