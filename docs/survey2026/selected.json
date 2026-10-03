@@ -1,0 +1,627 @@
+{
+ "seg": [
+  {
+   "title": "SAM3 Self-Distillation for Fine-Grained GOOSE 2D Semantic Segmentation",
+   "year": "2026",
+   "abstract": "We describe our 4th-place entry to the ICRA 2026 GOOSE 2D Fine-Grained Semantic Segmentation Challenge, which reached a composite mean Intersection-over-Union (mIoU) of 69.73% on the official 1,815-image test set. Our model adapts the image encoder of a recent visual foundation model, Segment Anything Model 3 (SAM3), with a lightweight decoder. Beyond this, we contribute two techniques and one empirical finding: (i) a self-distillation scheme that re-uses SAM3 itself, prompted with ground-truth boxes, as a teacher on the classes where it outperforms our own model; (ii) an image-level multi-scale test-time augmentation scheme that restores multi-scale inference for a fixed-input-size model by rescaling the image rather than the model input; and (iii) the finding that an aggressive photometric distortion from a winning 2025 GOOSE 2D entry, transplanted onto our pipeline, is its single larg",
+   "pdf": "https://arxiv.org/pdf/2606.20130v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "seg1"
+   ],
+   "url": "http://arxiv.org/abs/2606.20130v1"
+  },
+  {
+   "title": "Technical Report for ICRA 2026 GOOSE 2D Fine-Grained Semantic Segmentation Challenge: Exploring Query-Based Segmentation and Increased Spatial Context for Outdoor Scene Understanding",
+   "year": "2026",
+   "abstract": "In this report, we present our submission to the GOOSE 2D Fine-Grained Semantic Segmentation Challenge, organized as part of the Workshop on Field Robotics at ICRA 2026. The challenge combines data from the GOOSE and GOOSE-Ex datasets, which comprise more than 13k images captured from 4 distinct camera setups, annotated using a hierarchical taxonomy of 56 fine-grained classes and 11 broader categories. Starting from SegFormer as a baseline, we progressively improve segmentation performance through increased training crop sizes, a transition to the query-based Mask2Former architecture, and test-time augmentation. Our experiments show that query-based segmentation significantly outperforms the baseline model. Furthermore, increasing the crop size used during training yields substantial gains, highlighting the relevance of preserving scene context for fine-grained semantic disambiguation. O",
+   "pdf": "https://arxiv.org/pdf/2606.21456v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "seg1"
+   ],
+   "url": "http://arxiv.org/abs/2606.21456v1"
+  },
+  {
+   "title": "LUMA: Benchmarking Segmentation via a Lightweight Universal Mask Adapter",
+   "year": "2026",
+   "abstract": "Comparing transformer backbones for image segmentation is confounded: each is paired with a different decoder, recipe, and pretraining, so reported differences rarely reflect the backbone itself. We introduce the Lightweight Universal Mask Adapter (LUMA), a lightweight, backbone-agnostic mask-transformer head that treats any backbone as a black-box feature extractor, letting a set of queries read from its features through cheap cross-attention. LUMA matches the accuracy of EoMT, the state-of-the-art efficient ViT-segmenter, at lower cost, while attaching unchanged to isotropic, hierarchical, convolutional, and mixture-of-experts backbones alike. Holding this head fixed, we benchmark 20 backbones, 11 pretraining schemes and a range of resolutions on ADE20K and Cityscapes under one modern recipe. We find that ``efficient'' token mixers fail to deliver efficiency even at the high resolution",
+   "pdf": "https://arxiv.org/pdf/2607.00687v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "seg2"
+   ],
+   "url": "http://arxiv.org/abs/2607.00687v1"
+  },
+  {
+   "title": "Decoupling Continual Semantic Segmentation",
+   "year": "2025",
+   "abstract": "Continual Semantic Segmentation (CSS) requires learning new classes without forgetting previously acquired knowledge, addressing the fundamental challenge of catastrophic forgetting in dense prediction tasks. However, existing CSS methods typically employ single-stage encoder-decoder architectures where segmentation masks and class labels are tightly coupled, leading to interference between old and new class learning and suboptimal retention-plasticity balance. We introduce DecoupleCSS, a novel two-stage framework for CSS. By decoupling class-aware detection from class-agnostic segmentation, DecoupleCSS enables more effective continual learning, preserving past knowledge while learning new classes. The first stage leverages pre-trained text and image encoders, adapted using LoRA, to encode class-specific information and generate location-aware prompts. In the second stage, the Segment An",
+   "pdf": "https://arxiv.org/pdf/2508.05065v2",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "seg1",
+    "seg3"
+   ],
+   "url": "http://arxiv.org/abs/2508.05065v2"
+  },
+  {
+   "title": "A drone-based framework for coral habitat mapping via weakly supervised segmentation",
+   "year": "2025",
+   "abstract": "Obtaining pixel-level annotations over large spatial extents remains a major bottleneck for deploying machine learning in ecological applications. Here we present a multi-scale weakly supervised semantic segmentation (WSSS) framework that enables training high-resolution segmentation models from dense, classification-based outputs. Our method combines fine-scale, multi-label predictions from underwater imagery with broad-coverage aerial data. We convert these point-level classifications into coarse supervision masks that can be used to train a semantic segmentation model on Unmanned Aerial Vehicle (UAV) orthophotos. A second training step using the model's own refined predictions is then used to further improve spatial accuracy without requiring additional annotations. We demonstrate the approach on coral reef imagery, enabling large-area segmentation of coral morphotypes and illustratin",
+   "pdf": "https://arxiv.org/pdf/2508.18958v2",
+   "doi": "10.1007/s10044-026-01682-3",
+   "cites": 0,
+   "hits": [
+    "seg2"
+   ],
+   "url": "http://arxiv.org/abs/2508.18958v2"
+  },
+  {
+   "title": "Image Segmentation in Foundation Model Era: A Survey",
+   "year": "2024",
+   "abstract": "Image segmentation is a long-standing challenge in computer vision, studied continuously over several decades, as evidenced by seminal algorithms such as N-Cut, FCN, and MaskFormer. With the advent of foundation models (FMs), contemporary segmentation methodologies have embarked on a new epoch by either adapting FMs (e.g., CLIP, Stable Diffusion, DINO) for image segmentation or developing dedicated segmentation foundation models (e.g., SAM). These approaches not only deliver superior segmentation performance, but also herald newfound segmentation capabilities previously unseen in deep learning context. However, current research in image segmentation lacks a detailed analysis of distinct characteristics, challenges, and solutions associated with these advancements. This survey seeks to fill this gap by providing a thorough review of cutting-edge research centered around FM-driven image se",
+   "pdf": "https://arxiv.org/pdf/2408.12957v3",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "seg3",
+    "ssl3",
+    "ssl5"
+   ],
+   "url": "http://arxiv.org/abs/2408.12957v3"
+  },
+  {
+   "title": "A Simple Latent Diffusion Approach for Panoptic Segmentation and Mask Inpainting",
+   "year": "2024",
+   "abstract": "Panoptic and instance segmentation networks are often trained with specialized object detection modules, complex loss functions, and ad-hoc post-processing steps to manage the permutation-invariance of the instance masks. This work builds upon Stable Diffusion and proposes a latent diffusion approach for panoptic segmentation, resulting in a simple architecture that omits these complexities. Our training consists of two steps: (1) training a shallow autoencoder to project the segmentation masks to latent space; (2) training a diffusion model to allow image-conditioned sampling in latent space. This generative approach unlocks the exploration of mask completion or inpainting. The experimental validation on COCO and ADE20k yields strong segmentation results. Finally, we demonstrate our model's adaptability to multi-tasking by introducing learnable task embeddings.",
+   "pdf": "https://arxiv.org/pdf/2401.10227v2",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "seg2"
+   ],
+   "url": "http://arxiv.org/abs/2401.10227v2"
+  },
+  {
+   "title": "Hasse Diagrams for Attention: A Partial Order Framework for Designing Transformer Masks",
+   "year": "2026",
+   "abstract": "During the training of large Transformer models, attention masks regulate the scope and direction of information flow across a sequence. Numerous mask variants exist, and operators such as FlexAttention already support arbitrary attention masks. Nevertheless, a systematic formal analysis of the information-flow structure induced by arbitrary masks has been missing. This paper develops a complete theoretical framework. We prove that, with sufficient depth, the information flow of a multi-layer Transformer converges to a Hasse diagram -- a directed acyclic graph representing a partial order. Building on this, we recast the design of parallel training tasks as the problem of finding a minimal common supergraph of Hasse diagrams, and we establish a criterion for the minimal common supergraph. This yields a constructive method to derive attention masks directly from a family of tasks. Applyin",
+   "pdf": "https://arxiv.org/pdf/2606.09951v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "seg2"
+   ],
+   "url": "http://arxiv.org/abs/2606.09951v1"
+  },
+  {
+   "title": "INT: Instance-Specific Negative Mining for Task-Generic Promptable Segmentation",
+   "year": "2025",
+   "abstract": "Task-generic promptable image segmentation aims to achieve segmentation of diverse samples under a single task description by utilizing only one task-generic prompt. Current methods leverage the generalization capabilities of Vision-Language Models (VLMs) to infer instance-specific prompts from these task-generic prompts in order to guide the segmentation process. However, when VLMs struggle to generalise to some image instances, predicting instance-specific prompts becomes poor. To solve this problem, we introduce \\textbf{I}nstance-specific \\textbf{N}egative Mining for \\textbf{T}ask-Generic Promptable Segmentation (\\textbf{INT}). The key idea of INT is to adaptively reduce the influence of irrelevant (negative) prior knowledge whilst to increase the use the most plausible prior knowledge, selected by negative mining with higher contrast, in order to optimise instance-specific prompts ge",
+   "pdf": "https://arxiv.org/pdf/2501.18753v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "seg3",
+    "ssl3"
+   ],
+   "url": "http://arxiv.org/abs/2501.18753v1"
+  },
+  {
+   "title": "Technical Report for ICRA 2025 GOOSE 2D Semantic Segmentation Challenge: Boosting Off-Road Segmentation via Photometric Distortion and Exponential Moving Average",
+   "year": "2025",
+   "abstract": "We report on the application of a high-capacity semantic segmentation pipeline to the GOOSE 2D Semantic Segmentation Challenge for unstructured off-road environments. Using a FlashInternImage-B backbone together with a UPerNet decoder, we adapt established techniques, rather than designing new ones, to the distinctive conditions of off-road scenes. Our training recipe couples strong photometric distortion augmentation (to emulate the wide lighting variations of outdoor terrain) with an Exponential Moving Average (EMA) of weights for better generalization. Using only the GOOSE training dataset, we achieve 88.8\\% mIoU on the validation set.",
+   "pdf": "https://arxiv.org/pdf/2505.11769v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "seg1"
+   ],
+   "url": "http://arxiv.org/abs/2505.11769v1"
+  }
+ ],
+ "det": [
+  {
+   "title": "Coconut Palm Tree Counting on Drone Images with Deep Object Detection and Synthetic Training Data",
+   "year": "2024",
+   "abstract": "Drones have revolutionized various domains, including agriculture. Recent advances in deep learning have propelled among other things object detection in computer vision. This study utilized YOLO, a real-time object detector, to identify and count coconut palm trees in Ghanaian farm drone footage. The farm presented has lost track of its trees due to different planting phases. While manual counting would be very tedious and error-prone, accurately determining the number of trees is crucial for efficient planning and management of agricultural processes, especially for optimizing yields and predicting production. We assessed YOLO for palm detection within a semi-automated framework, evaluated accuracy augmentations, and pondered its potential for farmers. Data was captured in September 2022 via drones. To optimize YOLO with scarce data, synthetic images were created for model training and",
+   "pdf": "https://arxiv.org/pdf/2412.11949v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "det3"
+   ],
+   "url": "http://arxiv.org/abs/2412.11949v1"
+  },
+  {
+   "title": "CorrDiff: Adaptive Delay-aware Detector with Temporal Cue Inputs for Real-time Object Detection",
+   "year": "2025",
+   "abstract": "Real-time object detection takes an essential part in the decision-making process of numerous real-world applications, including collision avoidance and path planning in autonomous driving systems. This paper presents a novel real-time streaming perception method named CorrDiff, designed to tackle the challenge of delays in real-time detection systems. The main contribution of CorrDiff lies in its adaptive delay-aware detector, which is able to utilize runtime-estimated temporal cues to predict objects' locations for multiple future frames, and selectively produce predictions that matches real-world time, effectively compensating for any communication and computational delays. The proposed model outperforms current state-of-the-art methods by leveraging motion estimation and feature enhancement, both for 1) single-frame detection for the current frame or the next frame, in terms of the m",
+   "pdf": "https://arxiv.org/pdf/2501.05132v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "det1"
+   ],
+   "url": "http://arxiv.org/abs/2501.05132v1"
+  },
+  {
+   "title": "Enhancing Object Detection with Privileged Information: A Model-Agnostic Teacher-Student Approach",
+   "year": "2026",
+   "abstract": "This paper investigates the integration of the Learning Using Privileged Information (LUPI) paradigm in object detection to exploit fine-grained, descriptive information available during training but not at inference. We introduce a general, model-agnostic methodology for injecting privileged information-such as bounding box masks, saliency maps, and depth cues-into deep learning-based object detectors through a teacher-student architecture. Experiments are conducted across five state-of-the-art object detection models and multiple public benchmarks, including UAV-based litter detection datasets and Pascal VOC 2012, to assess the impact on accuracy, generalization, and computational efficiency. Our results demonstrate that LUPI-trained students consistently outperform their baseline counterparts, achieving significant boosts in detection accuracy with no increase in inference complexity ",
+   "pdf": "https://arxiv.org/pdf/2601.02016v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "det1",
+    "det2"
+   ],
+   "url": "http://arxiv.org/abs/2601.02016v1"
+  },
+  {
+   "title": "Context in object detection: a systematic literature review",
+   "year": "2025",
+   "abstract": "Context is an important factor in computer vision as it offers valuable information to clarify and analyze visual data. Utilizing the contextual information inherent in an image or a video can improve the precision and effectiveness of object detectors. For example, where recognizing an isolated object might be challenging, context information can improve comprehension of the scene. This study explores the impact of various context-based approaches to object detection. Initially, we investigate the role of context in object detection and survey it from several perspectives. We then review and discuss the most recent context-based object detection approaches and compare them. Finally, we conclude by addressing research questions and identifying gaps for further studies. More than 265 publications are included in this survey, covering different aspects of context in different categories of",
+   "pdf": "https://arxiv.org/pdf/2503.23249v1",
+   "doi": "10.1007/s10462-025-11186-x",
+   "cites": 0,
+   "hits": [
+    "det2"
+   ],
+   "url": "http://arxiv.org/abs/2503.23249v1"
+  },
+  {
+   "title": "Real-time Stereo-based 3D Object Detection for Streaming Perception",
+   "year": "2024",
+   "abstract": "The ability to promptly respond to environmental changes is crucial for the perception system of autonomous driving. Recently, a new task called streaming perception was proposed. It jointly evaluate the latency and accuracy into a single metric for video online perception. In this work, we introduce StreamDSGN, the first real-time stereo-based 3D object detection framework designed for streaming perception. StreamDSGN is an end-to-end framework that directly predicts the 3D properties of objects in the next moment by leveraging historical information, thereby alleviating the accuracy degradation of streaming perception. Further, StreamDSGN applies three strategies to enhance the perception accuracy: (1) A feature-flow-based fusion method, which generates a pseudo-next feature at the current moment to address the misalignment issue between feature and ground truth. (2) An extra regressio",
+   "pdf": "https://arxiv.org/pdf/2410.12394v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "det1",
+    "det2"
+   ],
+   "url": "http://arxiv.org/abs/2410.12394v1"
+  },
+  {
+   "title": "PVAFN: Point-Voxel Attention Fusion Network with Multi-Pooling Enhancing for 3D Object Detection",
+   "year": "2024",
+   "abstract": "The integration of point and voxel representations is becoming more common in LiDAR-based 3D object detection. However, this combination often struggles with capturing semantic information effectively. Moreover, relying solely on point features within regions of interest can lead to information loss and limitations in local feature representation. To tackle these challenges, we propose a novel two-stage 3D object detector, called Point-Voxel Attention Fusion Network (PVAFN). PVAFN leverages an attention mechanism to improve multi-modal feature fusion during the feature extraction phase. In the refinement stage, it utilizes a multi-pooling strategy to integrate both multi-scale and region-specific information effectively. The point-voxel attention mechanism adaptively combines point cloud and voxel-based Bird's-Eye-View (BEV) features, resulting in richer object representations that help ",
+   "pdf": "https://arxiv.org/pdf/2408.14600v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "det1",
+    "det2"
+   ],
+   "url": "http://arxiv.org/abs/2408.14600v1"
+  },
+  {
+   "title": "Improving the Detection of Small Oriented Objects in Aerial Images",
+   "year": "2024",
+   "abstract": "Small oriented objects that represent tiny pixel-area in large-scale aerial images are difficult to detect due to their size and orientation. Existing oriented aerial detectors have shown promising results but are mainly focused on orientation modeling with less regard to the size of the objects. In this work, we proposed a method to accurately detect small oriented objects in aerial images by enhancing the classification and regression tasks of the oriented object detection model. We designed the Attention-Points Network consisting of two losses: Guided-Attention Loss (GALoss) and Box-Points Loss (BPLoss). GALoss uses an instance segmentation mask as ground-truth to learn the attention features needed to improve the detection of small objects. These attention features are then used to predict box points for BPLoss, which determines the points' position relative to the target oriented bo",
+   "pdf": "https://arxiv.org/pdf/2401.06503v1",
+   "doi": "10.1109/WACVW58289.2023.00023",
+   "cites": 0,
+   "hits": [
+    "det2"
+   ],
+   "url": "http://arxiv.org/abs/2401.06503v1"
+  },
+  {
+   "title": "GBU-Palm: A Multimodal Video Dataset and Benchmark for Palm Presentation Attack Detection",
+   "year": "2026",
+   "abstract": "Existing palm presentation attack detection (PAD) datasets are often limited by static imagery, restricted acquisition conditions, or insufficient multimodal video data, hindering systematic evaluation across environments, modalities, and attack types. We present GBU-Palm, a large-scale multimodal video dataset and benchmark containing 21,326 videos from 105 subjects and 210 palms across six acquisition environments, including bona fide, Print, and Replay presentations, with 6,310 synchronized RGB-NIR samples. We construct leakage-controlled protocols that separate palm identity and attack lineage and benchmark four representative video architectures under environment-matched and held-out-environment settings. Results reveal substantial architecture-dependent degradation under environmental shift and show that RGB-NIR fusion does not consistently outperform RGB-only input. We further ana",
+   "pdf": "https://arxiv.org/pdf/2608.14389v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "det3"
+   ],
+   "url": "http://arxiv.org/abs/2608.14389v1"
+  },
+  {
+   "title": "Object Detection with Multimodal Large Vision-Language Models: An In-depth Review",
+   "year": "2025",
+   "abstract": "The fusion of language and vision in large vision-language models (LVLMs) has revolutionized deep learning-based object detection by enhancing adaptability, contextual reasoning, and generalization beyond traditional architectures. This in-depth review presents a structured exploration of the state-of-the-art in LVLMs, systematically organized through a three-step research review process. First, we discuss the functioning of vision language models (VLMs) for object detection, describing how these models harness natural language processing (NLP) and computer vision (CV) techniques to revolutionize object detection and localization. We then explain the architectural innovations, training paradigms, and output flexibility of recent LVLMs for object detection, highlighting how they achieve advanced contextual understanding for object detection. The review thoroughly examines the approaches u",
+   "pdf": "https://arxiv.org/pdf/2508.19294v2",
+   "doi": "10.1016/j.inffus.2025.103575",
+   "cites": 0,
+   "hits": [
+    "det1",
+    "det2"
+   ],
+   "url": "http://arxiv.org/abs/2508.19294v2"
+  },
+  {
+   "title": "Small Object Detection for Birds with Swin Transformer",
+   "year": "2025",
+   "abstract": "Object detection is the task of detecting objects in an image. In this task, the detection of small objects is particularly difficult. Other than the small size, it is also accompanied by difficulties due to blur, occlusion, and so on. Current small object detection methods are tailored to small and dense situations, such as pedestrians in a crowd or far objects in remote sensing scenarios. However, when the target object is small and sparse, there is a lack of objects available for training, making it more difficult to learn effective features. In this paper, we propose a specialized method for detecting a specific category of small objects; birds. Particularly, we improve the features learned by the neck; the sub-network between the backbone and the prediction head, to learn more effective features with a hierarchical design. We employ Swin Transformer to upsample the image features. M",
+   "pdf": "https://arxiv.org/pdf/2511.22310v1",
+   "doi": "10.23919/MVA57639.2023.10216093",
+   "cites": 0,
+   "hits": [
+    "det1",
+    "det2"
+   ],
+   "url": "http://arxiv.org/abs/2511.22310v1"
+  }
+ ],
+ "kpt": [
+  {
+   "title": "Learning Transformation-Isomorphic Latent Space for Accurate Hand Pose Estimation",
+   "year": "2025",
+   "abstract": "Vision-based regression tasks, such as hand pose estimation, have achieved higher accuracy and faster convergence through representation learning. However, existing representation learning methods often encounter the following issues: the high semantic level of features extracted from images is inadequate for regressing low-level information, and the extracted features include task-irrelevant information, reducing their compactness and interfering with regression tasks. To address these challenges, we propose TI-Net, a highly versatile visual Network backbone designed to construct a Transformation Isomorphic latent space. Specifically, we employ linear transformations to model geometric transformations in the latent space and ensure that {\\rm TI-Net} aligns them with those in the image space. This ensures that the latent features capture compact, low-level information beneficial for pose",
+   "pdf": "https://arxiv.org/pdf/2502.12535v1",
+   "doi": "10.2312/pg.20251270",
+   "cites": 0,
+   "hits": [
+    "kpt3"
+   ],
+   "url": "http://arxiv.org/abs/2502.12535v1"
+  },
+  {
+   "title": "Semi-Supervised Unconstrained Head Pose Estimation in the Wild",
+   "year": "2024",
+   "abstract": "Existing research on unconstrained in-the-wild head pose estimation suffers from the flaws of its datasets, which consist of either numerous samples by non-realistic synthesis or constrained collection, or small-scale natural images yet with plausible manual annotations. This makes fully-supervised solutions compromised due to the reliance on generous labels. To alleviate it, we propose the first semi-supervised unconstrained head pose estimation method SemiUHPE, which can leverage abundant easily available unlabeled head images. Technically, we choose semi-supervised rotation regression and adapt it to the error-sensitive and label-scarce problem of unconstrained head pose. Our method is based on the observation that the aspect-ratio invariant cropping of wild heads is superior to previous landmark-based affine alignment given that landmarks of unconstrained human heads are usually unav",
+   "pdf": "https://arxiv.org/pdf/2404.02544v4",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "kpt3",
+    "kpt4",
+    "ssl1"
+   ],
+   "url": "http://arxiv.org/abs/2404.02544v4"
+  },
+  {
+   "title": "Object Pose Transformer: Unifying Unseen Object Pose Estimation",
+   "year": "2026",
+   "abstract": "Learning model-free object pose estimation for unseen instances remains a fundamental challenge in 3D vision. Existing methods typically fall into two disjoint paradigms: category-level approaches predict absolute poses in a canonical space but rely on predefined taxonomies, while relative pose methods estimate cross-view transformations but cannot recover single-view absolute pose. In this work, we propose Object Pose Transformer (\\ours{}), a unified feed-forward framework that bridges these paradigms through task factorization within a single model. \\ours{} jointly predicts depth, point maps, camera parameters, and normalized object coordinates (NOCS) from RGB inputs, enabling both category-level absolute SA(3) pose and unseen-object relative SE(3) pose. Our approach leverages contrastive object-centric latent embeddings for canonicalization without requiring semantic labels at inferen",
+   "pdf": "https://arxiv.org/pdf/2603.23370v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "kpt3",
+    "kpt4"
+   ],
+   "url": "http://arxiv.org/abs/2603.23370v1"
+  },
+  {
+   "title": "Uncertainty-Aware Mapping from 3D Keypoints to Anatomical Landmarks for Markerless Biomechanics",
+   "year": "2026",
+   "abstract": "Markerless biomechanics increasingly relies on 3D skeletal keypoints extracted from video, yet downstream biomechanical mappings typically treat these estimates as deterministic, providing no principled mechanism for frame-wise quality control. In this work, we investigate predictive uncertainty as a quantitative measure of confidence for mapping 3D pose keypoints to 3D anatomical landmarks, a critical step preceding inverse kinematics and musculoskeletal analysis.\n  Within a temporal learning framework, we model both uncertainty arising from observation noise and uncertainty related to model limitations. Using synchronized motion capture ground truth on AMASS, we evaluate uncertainty at frame and joint level through error--uncertainty rank correlation, risk--coverage analysis, and catastrophic outlier detection.\n  Across experiments, uncertainty estimates, particularly those associated ",
+   "pdf": "https://arxiv.org/pdf/2603.26844v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "kpt1"
+   ],
+   "url": "http://arxiv.org/abs/2603.26844v1"
+  },
+  {
+   "title": "VST-Pose: A Velocity-Integrated Spatiotem-poral Attention Network for Human WiFi Pose Estimation",
+   "year": "2025",
+   "abstract": "WiFi-based human pose estimation has emerged as a promising non-visual alternative approaches due to its pene-trability and privacy advantages. This paper presents VST-Pose, a novel deep learning framework for accurate and continuous pose estimation using WiFi channel state information. The proposed method introduces ViSTA-Former, a spatiotemporal attention backbone with dual-stream architecture that adopts a dual-stream architecture to separately capture temporal dependencies and structural relationships among body joints. To enhance sensitivity to subtle human motions, a velocity modeling branch is integrated into the framework, which learns short-term keypoint dis-placement patterns and improves fine-grained motion representation. We construct a 2D pose dataset specifically designed for smart home care scenarios and demonstrate that our method achieves 92.2% accuracy on the PCK@50 met",
+   "pdf": "https://arxiv.org/pdf/2507.09672v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "kpt3",
+    "kpt4"
+   ],
+   "url": "http://arxiv.org/abs/2507.09672v1"
+  },
+  {
+   "title": "Boosting Semi-Supervised 2D Human Pose Estimation by Revisiting Data Augmentation and Consistency Training",
+   "year": "2024",
+   "abstract": "The 2D human pose estimation (HPE) is a basic visual problem. However, its supervised learning requires massive keypoint labels, which is labor-intensive to collect. Thus, we aim at boosting a pose estimator by excavating extra unlabeled data with semi-supervised learning (SSL). Most previous SSHPE methods are consistency-based and strive to maintain consistent outputs for differently augmented inputs. Under this genre, we find that SSHPE can be boosted from two cores: advanced data augmentations and concise consistency training ways. Specifically, for the first core, we discover the synergistic effects of existing augmentations, and reveal novel paradigms for conveniently producing new superior HPE-oriented augmentations which can more effectively add noise on unlabeled samples. We can therefore establish paired easy-hard augmentations with larger difficulty gaps. For the second core, w",
+   "pdf": "https://arxiv.org/pdf/2402.11566v3",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "kpt3",
+    "kpt4",
+    "ssl1"
+   ],
+   "url": "http://arxiv.org/abs/2402.11566v3"
+  },
+  {
+   "title": "Detection, Pose Estimation and Segmentation for Multiple Bodies: Closing the Virtuous Circle",
+   "year": "2024",
+   "abstract": "Human pose estimation methods work well on isolated people but struggle with multiple-bodies-in-proximity scenarios. Previous work has addressed this problem by conditioning pose estimation by detected bounding boxes or keypoints, but overlooked instance masks. We propose to iteratively enforce mutual consistency of bounding boxes, instance masks, and poses. The introduced BBox-Mask-Pose (BMP) method uses three specialized models that improve each other's output in a closed loop. All models are adapted for mutual conditioning, which improves robustness in multi-body scenes. MaskPose, a new mask-conditioned pose estimation model, is the best among top-down approaches on OCHuman. BBox-Mask-Pose pushes SOTA on OCHuman dataset in all three tasks - detection, instance segmentation, and pose estimation. It also achieves SOTA performance on COCO pose estimation. The method is especially good in",
+   "pdf": "https://arxiv.org/pdf/2412.01562v3",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "kpt3"
+   ],
+   "url": "http://arxiv.org/abs/2412.01562v3"
+  },
+  {
+   "title": "GKDT: General Keypoint Detection Transformer",
+   "year": "2026",
+   "abstract": "With the emergence of various pre-trained vision and language models, computer vision is shifting from narrow-domain to open-domain recognition. The construction of a more powerful yet general keypoint detection (GKD) model to support diverse tasks has become increasingly important in the field. To this end, we firstly present a large-scale unified keypoint dataset called MegaKPT. The dataset is composed of over 1.3 million diverse object instances from twenty-nine existing datasets, and enjoys high-quality unified annotations with keypoint text descriptions. Based on MegaKPT, we develop GKDT, a simple, flexible and powerful DINOv3 based Transformer model for General Keypoint Detection. Our GKDT supports visual prompts, text prompts, or both. To enhance model training, we also propose a suite of useful strategies such as mix-modal prompted training and dynamic importance sampling. By tes",
+   "pdf": "https://arxiv.org/pdf/2607.00752v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "kpt1"
+   ],
+   "url": "http://arxiv.org/abs/2607.00752v1"
+  },
+  {
+   "title": "FreqFLD: Towards All-in-One Facial Landmark Detection via Frequency Modulation",
+   "year": "2026",
+   "abstract": "Recent progress in deep learning has significantly advanced facial landmark detection. However, most existing methods process features in a spatial-domain manner under a dataset-specific training paradigm, which overlooks the fact that facial landmark detection is inherently geometry-driven and sensitive to frequency variations, thereby limiting cross-dataset generalization under complex scenarios and hindering the development of a facial landmark detection model. To address this issue, we propose \\textbf{FreqFLD}, a \\textbf{freq}uency-modulated framework towards All-in-One \\textbf{f}acial \\textbf{l}andmark \\textbf{d}etection. Specifically, FreqFLD introduces a Frequency Modulation Module (FreqMoM) to explicitly induce the frequency prior by decoupling and modulating low- and high-frequency components, which is then injected into subsequent feature modeling to enable balanced modeling of",
+   "pdf": "https://arxiv.org/pdf/2609.10278v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "kpt2"
+   ],
+   "url": "http://arxiv.org/abs/2609.10278v1"
+  },
+  {
+   "title": "3D Affordance Keypoint Detection for Robotic Manipulation",
+   "year": "2025",
+   "abstract": "This paper presents a novel approach for affordance-informed robotic manipulation by introducing 3D keypoints to enhance the understanding of object parts' functionality. The proposed approach provides direct information about what the potential use of objects is, as well as guidance on where and how a manipulator should engage, whereas conventional methods treat affordance detection as a semantic segmentation task, focusing solely on answering the what question. To address this gap, we propose a Fusion-based Affordance Keypoint Network (FAKP-Net) by introducing 3D keypoint quadruplet that harnesses the synergistic potential of RGB and Depth image to provide information on execution position, direction, and extent. Benchmark testing demonstrates that FAKP-Net outperforms existing models by significant margins in affordance segmentation task and keypoint detection task. Real-world experim",
+   "pdf": "https://arxiv.org/pdf/2511.22195v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "kpt1"
+   ],
+   "url": "http://arxiv.org/abs/2511.22195v1"
+  }
+ ],
+ "bio": [
+  {
+   "title": "Deep Learning Techniques for Hand Vein Biometrics: A Comprehensive Review",
+   "year": "2024",
+   "abstract": "Biometric authentication has garnered significant attention as a secure and efficient method of identity verification. Among the various modalities, hand vein biometrics, including finger vein, palm vein, and dorsal hand vein recognition, offer unique advantages due to their high accuracy, low susceptibility to forgery, and non-intrusiveness. The vein patterns within the hand are highly complex and distinct for each individual, making them an ideal biometric identifier. Additionally, hand vein recognition is contactless, enhancing user convenience and hygiene compared to other modalities such as fingerprint or iris recognition. Furthermore, the veins are internally located, rendering them less susceptible to damage or alteration, thus enhancing the security and reliability of the biometric system. The combination of these factors makes hand vein biometrics a highly effective and secure m",
+   "pdf": "https://arxiv.org/pdf/2409.07128v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "bio3"
+   ],
+   "url": "http://arxiv.org/abs/2409.07128v1"
+  },
+  {
+   "title": "AGVBench: A Reliability-Oriented Benchmark of Data Augmentation for Vein Recognition",
+   "year": "2026",
+   "abstract": "Vein recognition is a secure biometric technology often constrained by limited annotated data and imaging variations. While data augmentation mitigates this, strategies designed for natural images may disrupt the fine-grained topology and textures essential for identity discrimination. We present AGVBench, which evaluates 30 representative augmentation strategies on five public palm- and finger-vein datasets with seven backbone architectures, covering classic CNNs, vision transformers, and vein-specific recognition models. Our results show that multi-image mixing methods (e.g., MixUp, PuzzleMix, StarMixup) generally provide the strongest recognition performance. However, they are often poorly calibrated and vulnerable to adversarial perturbations, revealing a clear inconsistency between clean accuracy and adversarial security. We also find that severe geometric transformations frequently",
+   "pdf": "https://arxiv.org/pdf/2607.02271v2",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "bio2"
+   ],
+   "url": "http://arxiv.org/abs/2607.02271v2"
+  },
+  {
+   "title": "PVTree: Realistic and Controllable Palm Vein Generation for Recognition Tasks",
+   "year": "2025",
+   "abstract": "Palm vein recognition is an emerging biometric technology that offers enhanced security and privacy. However, acquiring sufficient palm vein data for training deep learning-based recognition models is challenging due to the high costs of data collection and privacy protection constraints. This has led to a growing interest in generating pseudo-palm vein data using generative models. Existing methods, however, often produce unrealistic palm vein patterns or struggle with controlling identity and style attributes. To address these issues, we propose a novel palm vein generation framework named PVTree. First, the palm vein identity is defined by a complex and authentic 3D palm vascular tree, created using an improved Constrained Constructive Optimization (CCO) algorithm. Second, palm vein patterns of the same identity are generated by projecting the same 3D vascular tree into 2D images from",
+   "pdf": "https://arxiv.org/pdf/2503.02547v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "bio2"
+   ],
+   "url": "http://arxiv.org/abs/2503.02547v1"
+  },
+  {
+   "title": "Adaptive Contrast Enhancement and Optimised Feature Matching for RootSIFT-Based Palm-Vein Recognition",
+   "year": "2026",
+   "abstract": "Palm-vein recognition is a highly secure biometric modality due to the uniqueness and subcutaneous nature of vein patterns. However, low contrast in palm-vein images, caused by NIR light scattering and sensor limitations, remains a significant challenge. To address this, we propose the Intensity-Limited Adaptive Contrast Stretching with Bidirectional Gaussian-weighted Overlapping Tiles (ILACS-BGOT) method, an enhancement of the previously developed ILACS with Layered Gaussian-weighted Overlapping Tiles (ILACS-LGOT) technique. ILACS enhances local contrast, while BGOT mitigates blocky artefacts. This study further integrates RootSIFT features with KNN+RT and incorporates the previously introduced Mean and Median Distance (MMD) filter to investigate the parameter variations of both MMD and RT, and their impact on recognition performance. A comprehensive analysis was conducted across three ",
+   "pdf": "https://arxiv.org/pdf/2607.16077v2",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "bio2"
+   ],
+   "url": "http://arxiv.org/abs/2607.16077v2"
+  },
+  {
+   "title": "Topology-Aware Global-Local Mamba Networks for Palm Vein Biometrics",
+   "year": "2026",
+   "abstract": "Palm-vein recognition is a fine-grained biometric task in which both local vascular texture and the global layout of the vessel tree carry discriminative information, while public datasets remain limited. We propose a topology-aware global-local backbone that combines multi-scale local features, a structureguided directional stream built on a fixed Sobel-magnitude edge prior, and a four-direction state-space scan global pathway within six Topology-Aware Blocks. A staged gated fusion integrates local, structural, and global representations in that order. On HKPUNIR, our method achieves 99.13% top-1 accuracy and 0.08% EER with 7.2 M parameters; on VERA Palm Vein, it achieves 92.42% accuracy and 0.61% EER. Across both datasets it attains the lowest EER among ResNet50, Vim-S, ViT-S, and GLVM at the smallest parameter count, while GLVM remains the strongest in top-1 accuracy and the cheapest ",
+   "pdf": "https://arxiv.org/pdf/2608.08951v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "bio2"
+   ],
+   "url": "http://arxiv.org/abs/2608.08951v1"
+  },
+  {
+   "title": "$\\textit{sweet}$- An Open Source Modular Platform for Contactless Hand Vascular Biometric Experiments",
+   "year": "2024",
+   "abstract": "Current finger-vein or palm-vein recognition systems usually require direct contact of the subject with the apparatus. This can be problematic in environments where hygiene is of primary importance. In this work we present a contactless vascular biometrics sensor platform named \\sweet which can be used for hand vascular biometrics studies (wrist, palm, and finger-vein) and surface features such as palmprint. It supports several acquisition modalities such as multi-spectral Near-Infrared (NIR), RGB-color, Stereo Vision (SV) and Photometric Stereo (PS). Using this platform we collect a dataset consisting of the fingers, palm and wrist vascular data of 120 subjects and develop a powerful 3D pipeline for the pre-processing of this data. We then present biometric experimental results, focusing on Finger-Vein Recognition (FVR). Finally, we discuss fusion of multiple modalities, such palm-vein ",
+   "pdf": "https://arxiv.org/pdf/2404.09376v2",
+   "doi": "10.3390/s25164990",
+   "cites": 0,
+   "hits": [
+    "bio4"
+   ],
+   "url": "http://arxiv.org/abs/2404.09376v2"
+  },
+  {
+   "title": "FVeinSyn: Synthetic Finger Vein Image Generator",
+   "year": "2026",
+   "abstract": "A major challenge in finger vein recognition is the lack of large-scale public datasets. Existing datasets contain few identities and limited samples per finger, restricting the advancement of deep learning-based methods. To address this, we propose FVeinSyn, a large-scale controllable synthetic data generation framework for finger vein. It explicitly decouples synthesis of vascular topology and imaging appearance to mitigate the limitations caused by insufficient training samples, such as inadequate identity diversity and restricted realism. Specifically: first, a finger vein identity generator models vascular topology under physiological and geometric constraints using stochastic L-systems, producing anatomically valid and identity-distinctive vascular patterns. Then, a cascaded region-aware GAN renders the topological maps into realistic near-infrared images. Finally, an intra-class d",
+   "pdf": "https://arxiv.org/pdf/2608.27527v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "bio3"
+   ],
+   "url": "http://arxiv.org/abs/2608.27527v1"
+  },
+  {
+   "title": "OpenVeinNet: Robust Open-Set Finger Vein Verification with Dynamic Snake Convolution and Graph Learning",
+   "year": "2026",
+   "abstract": "Finger vein verification is a promising biometric modality for secure authentication because vascular patterns are internal, difficult to observe externally, and relatively resistant to presentation attacks. However, reliable verification remains challenging in open-set settings, where test identities are unseen during training and non-enrolled probes must be rejected at inference. This paper presents OpenVeinNet, a finger vein verification framework designed for cross-dataset and open-set evaluation. The proposed model combines Dynamic Snake Convolution with graph-based feature modelling. Dynamic Snake Convolution extracts local curvilinear and tubular vein structures using adaptive sampling, while the graph convolutional backbone models long-range topological relationships between vein regions. To improve the discriminative quality of the embedding space, we introduce a Centroid Angula",
+   "pdf": "https://arxiv.org/pdf/2608.25515v1",
+   "doi": "10.1109/TBIOM.2026.3728524",
+   "cites": 0,
+   "hits": [
+    "bio3"
+   ],
+   "url": "http://arxiv.org/abs/2608.25515v1"
+  },
+  {
+   "title": "Deep Learning in Palmprint Recognition-A Comprehensive Survey",
+   "year": "2025",
+   "abstract": "Palmprint recognition has emerged as a prominent biometric technology, widely applied in diverse scenarios. Traditional handcrafted methods for palmprint recognition often fall short in representation capability, as they heavily depend on researchers' prior knowledge. Deep learning (DL) has been introduced to address this limitation, leveraging its remarkable successes across various domains. While existing surveys focus narrowly on specific tasks within palmprint recognition-often grounded in traditional methodologies-there remains a significant gap in comprehensive research exploring DL-based approaches across all facets of palmprint recognition. This paper bridges that gap by thoroughly reviewing recent advancements in DL-powered palmprint recognition. The paper systematically examines progress across key tasks, including region-of-interest segmentation, feature extraction, and securi",
+   "pdf": "https://arxiv.org/pdf/2501.01166v2",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "bio1"
+   ],
+   "url": "http://arxiv.org/abs/2501.01166v2"
+  },
+  {
+   "title": "Robust Palm-Vein Recognition Using the MMD Filter: Improving SIFT-Based Feature Matching",
+   "year": "2025",
+   "abstract": "A major challenge with palm vein images is that slight movements of the fingers and thumb, or variations in hand posture, can stretch the skin in different areas and alter the vein patterns. This can result in an infinite number of variations in palm vein images for a given individual. This paper introduces a novel filtering technique for SIFT-based feature matching, known as the Mean and Median Distance (MMD) Filter. This method evaluates the differences in keypoint coordinates and computes the mean and median in each direction to eliminate incorrect matches. Experiments conducted on the 850nm subset of the CASIA dataset indicate that the proposed MMD filter effectively preserves correct points while reducing false positives detected by other filtering methods. A comparison with existing SIFT-based palm vein recognition systems demonstrates that the proposed MMD filter delivers outstand",
+   "pdf": "https://arxiv.org/pdf/2503.01612v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "bio2"
+   ],
+   "url": "http://arxiv.org/abs/2503.01612v1"
+  }
+ ],
+ "ssl": [
+  {
+   "title": "Semi-supervised Cervical Segmentation on Ultrasound by A Dual Framework for Neural Networks",
+   "year": "2025",
+   "abstract": "Accurate segmentation of ultrasound (US) images of the cervical muscles is crucial for precision healthcare. The demand for automatic computer-assisted methods is high. However, the scarcity of labeled data hinders the development of these methods. Advanced semi-supervised learning approaches have displayed promise in overcoming this challenge by utilizing labeled and unlabeled data. This study introduces a novel semi-supervised learning (SSL) framework that integrates dual neural networks. This SSL framework utilizes both networks to generate pseudo-labels and cross-supervise each other at the pixel level. Additionally, a self-supervised contrastive learning strategy is introduced, which employs a pair of deep representations to enhance feature learning capabilities, particularly on unlabeled data. Our framework demonstrates competitive performance in cervical segmentation tasks. Our co",
+   "pdf": "https://arxiv.org/pdf/2503.17057v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "ssl1"
+   ],
+   "url": "http://arxiv.org/abs/2503.17057v1"
+  },
+  {
+   "title": "Semi-supervised 2D Human Pose Estimation via Adaptive Keypoint Masking",
+   "year": "2024",
+   "abstract": "Human pose estimation is a fundamental and challenging task in computer vision. Larger-scale and more accurate keypoint annotations, while helpful for improving the accuracy of supervised pose estimation, are often expensive and difficult to obtain. Semi-supervised pose estimation tries to leverage a large amount of unlabeled data to improve model performance, which can alleviate the problem of insufficient labeled samples. The latest semi-supervised learning usually adopts a strong and weak data augmented teacher-student learning framework to deal with the challenge of \"Human postural diversity and its long-tailed distribution\". Appropriate data augmentation method is one of the key factors affecting the accuracy and generalization of semi-supervised models. Aiming at the problem that the difference of sample learning is not considered in the fixed keypoint masking augmentation method, ",
+   "pdf": "https://arxiv.org/pdf/2404.14835v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "ssl1"
+   ],
+   "url": "http://arxiv.org/abs/2404.14835v1"
+  },
+  {
+   "title": "DRL-STNet: Unsupervised Domain Adaptation for Cross-modality Medical Image Segmentation via Disentangled Representation Learning",
+   "year": "2024",
+   "abstract": "Unsupervised domain adaptation (UDA) is essential for medical image segmentation, especially in cross-modality data scenarios. UDA aims to transfer knowledge from a labeled source domain to an unlabeled target domain, thereby reducing the dependency on extensive manual annotations. This paper presents DRL-STNet, a novel framework for cross-modality medical image segmentation that leverages generative adversarial networks (GANs), disentangled representation learning (DRL), and self-training (ST). Our method leverages DRL within a GAN to translate images from the source to the target modality. Then, the segmentation model is initially trained with these translated images and corresponding source labels and then fine-tuned iteratively using a combination of synthetic and real images with pseudo-labels and real labels. The proposed framework exhibits superior performance in abdominal organ s",
+   "pdf": "https://arxiv.org/pdf/2409.18340v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "ssl3"
+   ],
+   "url": "http://arxiv.org/abs/2409.18340v1"
+  },
+  {
+   "title": "ModSSC: A Modular Framework for Semi-Supervised Classification on Heterogeneous Data",
+   "year": "2025",
+   "abstract": "Semi-supervised classification leverages both labeled and unlabeled data to improve predictive performance, but existing software support remains fragmented across methods, learning settings, and data modalities. We introduce ModSSC, an open source Python framework for inductive and transductive semi-supervised classification designed to support reproducible and controlled experimentation. ModSSC provides a modular and extensible software architecture centered on reusable semi-supervised learning components, stable abstractions, and fully declarative experiment specification. Experiments are defined through configuration files, enabling systematic comparison across heterogeneous datasets and model backbones without modifying algorithmic code. ModSSC 1.0.0 is released under the MIT license with full documentation and automated tests, and is available at https://github.com/ModSSC/ModSSC. T",
+   "pdf": "https://arxiv.org/pdf/2512.13228v2",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "ssl1"
+   ],
+   "url": "http://arxiv.org/abs/2512.13228v2"
+  },
+  {
+   "title": "InterLUDE: Interactions between Labeled and Unlabeled Data to Enhance Semi-Supervised Learning",
+   "year": "2024",
+   "abstract": "Semi-supervised learning (SSL) seeks to enhance task performance by training on both labeled and unlabeled data. Mainstream SSL image classification methods mostly optimize a loss that additively combines a supervised classification objective with a regularization term derived solely from unlabeled data. This formulation neglects the potential for interaction between labeled and unlabeled images. In this paper, we introduce InterLUDE, a new approach to enhance SSL made of two parts that each benefit from labeled-unlabeled interaction. The first part, embedding fusion, interpolates between labeled and unlabeled embeddings to improve representation learning. The second part is a new loss, grounded in the principle of consistency regularization, that aims to minimize discrepancies in the model's predictions between labeled versus unlabeled inputs. Experiments on standard closed-set SSL benc",
+   "pdf": "https://arxiv.org/pdf/2403.10658v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "ssl1"
+   ],
+   "url": "http://arxiv.org/abs/2403.10658v1"
+  },
+  {
+   "title": "Semi-Supervised Multimodal Multi-Instance Learning for Aortic Stenosis Diagnosis",
+   "year": "2024",
+   "abstract": "Automated interpretation of ultrasound imaging of the heart (echocardiograms) could improve the detection and treatment of aortic stenosis (AS), a deadly heart disease. However, existing deep learning pipelines for assessing AS from echocardiograms have two key limitations. First, most methods rely on limited 2D cineloops, thereby ignoring widely available Doppler imaging that contains important complementary information about pressure gradients and blood flow abnormalities associated with AS. Second, obtaining labeled data is difficult. There are often far more unlabeled echocardiogram recordings available, but these remain underutilized by existing methods. To overcome these limitations, we introduce Semi-supervised Multimodal Multiple-Instance Learning (SMMIL), a new deep learning framework for automatic interpretation for structural heart diseases like AS. When deployed, SMMIL can co",
+   "pdf": "https://arxiv.org/pdf/2403.06024v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "ssl1"
+   ],
+   "url": "http://arxiv.org/abs/2403.06024v1"
+  },
+  {
+   "title": "DistillLens: Symmetric Knowledge Distillation Through Logit Lens",
+   "year": "2026",
+   "abstract": "Standard Knowledge Distillation (KD) compresses Large Language Models (LLMs) by optimizing final outputs, yet it typically treats the teacher's intermediate layer's thought process as a black box. While feature-based distillation attempts to bridge this gap, existing methods (e.g., MSE and asymmetric KL divergence) ignore the rich uncertainty profiles required for the final output. In this paper, we introduce DistillLens, a framework that symmetrically aligns the evolving thought processes of student and teacher models. By projecting intermediate hidden states into the vocabulary space via the Logit Lens, we enforce structural alignment using a symmetric divergence objective. Our analysis proves that this constraint imposes a dual-sided penalty, preventing both overconfidence and underconfidence while preserving the high-entropy information conduits essential for final deduction. Extensi",
+   "pdf": "https://arxiv.org/pdf/2602.13567v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "ssl2"
+   ],
+   "url": "http://arxiv.org/abs/2602.13567v1"
+  },
+  {
+   "title": "SPRKD: Effective Knowledge Distillation for Deep Neural Networks via Saddle Region Approximation",
+   "year": "2026",
+   "abstract": "Modern deep neural networks are potent catalysts for scientific and industrial impact, yet excessive parameter counts impede deployment in low-compute settings such as hospital equipment and energy infrastructure. Predominant knowledge distillation (KD) methods favor replication: smaller students mimic teacher output logits, yet empirically yield low task performance, hamper convergence, and act merely as regularization rather than substantive knowledge transfer. We propose Saddle Point Recruitment for Knowledge Distillation (SPRKD), reframing distillation from replication to employing teachers as optimization-curvature and domain proxies, characterizing saddle points as regions of strong further-descent potential via embedding and basin-fractal properties. Using Hessian eigenvalue spectral density (ESD), SPRKD identifies low-loss saddle regions for student re-exploration; weak-teacher e",
+   "pdf": "https://arxiv.org/pdf/2607.23346v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "ssl2"
+   ],
+   "url": "http://arxiv.org/abs/2607.23346v1"
+  },
+  {
+   "title": "Sparse Knowledge Distillation: A Mathematical Framework for Probability-Domain Temperature Scaling and Multi-Stage Compression",
+   "year": "2026",
+   "abstract": "We develop a unified theoretical framework for sparse knowledge distillation based on probability-domain softening operators. While the equivalence $p^{1/T} \\propto \\mathrm{softmax}(z/T)$ is well known, our contribution is an operator-level analytical framework built on this foundation rather than the equivalence itself.\n  The framework comprises four core components: (i) operator-agnostic bias--variance decompositions that characterize when sparse students outperform dense teachers, (ii) a homotopy path formalization of multi-stage pruning in function space explaining why iterative compression succeeds where one-shot pruning fails, (iii) convergence guarantees establishing $O(1/n)$ rates for $n$-stage distillation with explicit parameter dependence, and (iv) equivalence class characterizations identifying distinct probability-domain operators that yield identical student models under ca",
+   "pdf": "https://arxiv.org/pdf/2601.03195v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "ssl2"
+   ],
+   "url": "http://arxiv.org/abs/2601.03195v1"
+  },
+  {
+   "title": "Synthetic Data in MR Spectroscopy: Current Practices, Applications, and Considerations",
+   "year": "2026",
+   "abstract": "The use of synthetic data has emerged as an essential tool in Magnetic Resonance Spectroscopy (MRS) research and applications, providing advantages for optimization of acquisition, software validation, deep learning applications, and enhanced reproducibility. Importantly, synthetic data addresses challenges of limited training data availability, particularly for clinical populations, and offers controlled solutions for investigating uncertainties and unexplained variance with in vivo data. This work provides a review and evaluation of current practices in the use and generation of synthetic data within the MRS field. Conducted by the MRS Synthetic Data Working Group under the Code & Data Sharing Committee of the MRS Study Group of the International Society for Magnetic Resonance in Medicine (ISMRM), this manuscript encompasses existing literature, supplemented by collective experience an",
+   "pdf": "https://arxiv.org/pdf/2602.23463v2",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "ssl4"
+   ],
+   "url": "http://arxiv.org/abs/2602.23463v2"
+  }
+ ]
+}
