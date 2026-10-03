@@ -1,12 +1,13 @@
-# 大文件与本地产物不入库
 third_party/
 runs/
 data/
 incoming/
+docs/survey2026/pdfs/
 *.pt
 *.pth
 *.ckpt
 *.onnx
+*.pdf
 __pycache__/
 *.pyc
 *.log
