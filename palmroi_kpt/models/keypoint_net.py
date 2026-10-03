@@ -38,6 +38,26 @@ class SegPriorHead(nn.Module):
         return self.logits(f), f  # (mask logits, 分割特征)
 
 
+class _IRFeatureExtractor(nn.Module):
+    """iResNet 的空间特征提取: 取 conv1..layer4 的特征图 (bn2/fc 之前的 (N,512,h/16,w/16)),
+    供 SimCC 头使用 (识别线的 embedding 输出对坐标回归无效)."""
+
+    def __init__(self, m):
+        super().__init__()
+        self.m = m
+
+    def forward(self, x):
+        m = self.m
+        x = m.conv1(x)
+        x = m.bn1(x)
+        x = m.prelu(x)
+        x = m.layer1(x)
+        x = m.layer2(x)
+        x = m.layer3(x)
+        x = m.layer4(x)
+        return x
+
+
 class PalmKeypointNet(nn.Module):
     """backbone -> [seg prior] -> SimCC 头. 输出 (simcc_x, simcc_y), 各 (N,3,res)."""
 
@@ -55,6 +75,13 @@ class PalmKeypointNet(nn.Module):
             m = self._build_mobilenet(pretrained)
             self.feat = m.features
             c = 576
+        elif backbone == "iresnet18":
+            # 人脸/掌纹识别预训练的 iResNet (insightface 语义, MIT, 已内嵌 vendored)。
+            # 预训练权重经 --init_weights 注入 (如 Phase A 识别 checkpoint)。
+            from palmroi_kpt.models.iresnet_backbone import iresnet18
+            m = iresnet18(num_features=512, dropout=0.4, num_classes=1000)
+            self.feat = _IRFeatureExtractor(m)
+            c = 512
         else:
             raise ValueError(backbone)
 

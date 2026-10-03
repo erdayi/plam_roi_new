@@ -21,7 +21,7 @@ import torch
 from torch.utils.data import DataLoader
 
 from palmroi_kpt.datasets.keypoint_dataset import PalmKeypointDataset
-from palmroi_kpt.models.keypoint_net import PalmKeypointNet
+from palmroi_kpt.models.keypoint_net import PalmKeypointNet, _IRFeatureExtractor
 from palmroi_kpt.models.head_simcc import simcc_loss
 from palmroi_kpt.losses.topology import PalmTopologyLoss
 from palmroi_kpt.recog.metrics_keypoint import nle_metrics
@@ -44,7 +44,7 @@ def main():
     ap.add_argument("--val_root", default=None, help="独立验证集; 不给则从 data_root 按 10%% 切")
     ap.add_argument("--out_dir", default="runs/m2")
     ap.add_argument("--backbone", default="resnet18",
-                    choices=["resnet18", "mobilenet_v3_small"])
+                    choices=["resnet18", "mobilenet_v3_small", "iresnet18"])
     ap.add_argument("--input_size", type=int, default=256)
     ap.add_argument("--simcc_res", type=int, default=256)
     ap.add_argument("--epochs", type=int, default=60)
@@ -52,6 +52,8 @@ def main():
     ap.add_argument("--lr", type=float, default=1e-3)
     ap.add_argument("--sigma", type=float, default=2.0)
     ap.add_argument("--lambda_topo", type=float, default=0.05)
+    ap.add_argument("--init_weights", default=None,
+                    help="encoder 预训练权重 (如 Phase A 识别 checkpoint best.pt, 同构部分自动加载)")
     ap.add_argument("--num_workers", type=int, default=4)
     ap.add_argument("--iters", type=int, default=0, help=">0 时每 epoch 截断 (冒烟)")
     ap.add_argument("--save_every", type=int, default=5,
@@ -88,6 +90,17 @@ def main():
 
     model = PalmKeypointNet(args.backbone, pretrained=True, num_keypoints=K,
                             input_size=args.input_size, simcc_res=args.simcc_res).to(device)
+    if args.init_weights:
+        sd = torch.load(args.init_weights, map_location="cpu", weights_only=False)
+        sd = sd.get("model", sd.get("encoder", sd.get("state_dict", sd)))
+        tgt = model.feat.m if isinstance(model.feat, _IRFeatureExtractor) else model.feat
+        own = tgt.state_dict()
+        hit = sum(1 for k in sd if k in own and own[k].shape == sd[k].shape)
+        for k in sd:
+            if k in own and own[k].shape == sd[k].shape:
+                own[k] = sd[k]
+        tgt.load_state_dict(own)
+        print(f"[init_weights] 加载 {hit}/{len(own)} 个张量进 encoder ({args.init_weights})")
     topo = PalmTopologyLoss() if K == 3 else None  # 三角形拓扑需要 3 点
 
     opt = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=5e-4)
