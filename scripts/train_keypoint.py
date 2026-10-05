@@ -59,6 +59,9 @@ def main():
     ap.add_argument("--save_every", type=int, default=5,
                     help="每 N 个 epoch 存 last.pt (覆盖写, 磁盘占用恒定; 1=最细粒度)")
     ap.add_argument("--no_resume", action="store_true", help="忽略 last.pt 从零重训")
+    ap.add_argument("--cache_dir", default="E:/data/roi_cache",
+                    help="预缩放缓存目录 (decode-once-reuse); 传 'off' 关闭")
+    ap.add_argument("--cache_side", type=int, default=512)
     args = ap.parse_args()
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -69,22 +72,27 @@ def main():
     print(f"device: {device}, torch {torch.__version__}")
     torch.backends.cudnn.benchmark = True  # 输入尺寸固定, 卷积自动调优
 
-    base_train = PalmKeypointDataset(args.data_root, args.input_size, args.simcc_res, train=True)
+    cache = None if args.cache_dir == "off" else args.cache_dir
+    base_train = PalmKeypointDataset(args.data_root, args.input_size, args.simcc_res,
+                                     train=True, cache_side=args.cache_side, cache_dir=cache)
     K = base_train.num_keypoints
     print(f"num_keypoints = {K}")
     if args.val_root:
         train_ds = base_train
-        val_ds = PalmKeypointDataset(args.val_root, args.input_size, args.simcc_res, train=False)
+        val_ds = PalmKeypointDataset(args.val_root, args.input_size, args.simcc_res,
+                                     train=False, cache_side=args.cache_side, cache_dir=cache)
     else:
         _, tr_idx, va_idx = split_train_val(args.data_root)
         print(f"split: train {len(tr_idx)} / val {len(va_idx)}")
         train_ds = torch.utils.data.Subset(base_train, tr_idx)
         val_ds = torch.utils.data.Subset(
-            PalmKeypointDataset(args.data_root, args.input_size, args.simcc_res, train=False), va_idx)
+            PalmKeypointDataset(args.data_root, args.input_size, args.simcc_res,
+                                train=False, cache_side=args.cache_side, cache_dir=cache), va_idx)
     print(f"train {len(train_ds)} / val {len(val_ds)}")
 
     train_dl = DataLoader(train_ds, batch_size=args.batch_size, shuffle=True,
-                          num_workers=args.num_workers, drop_last=True, pin_memory=True)
+                          num_workers=args.num_workers, drop_last=True, pin_memory=True,
+                          persistent_workers=args.num_workers > 0, prefetch_factor=4 if args.num_workers > 0 else None)
     val_dl = DataLoader(val_ds, batch_size=args.batch_size, shuffle=False,
                         num_workers=args.num_workers)
 

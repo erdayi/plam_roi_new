@@ -61,19 +61,36 @@ class PalmKeypointDataset(Dataset):
     """输出 (img, k_bin(K,2), k_norm(K,2)); K 由数据自动确定并强校验一致性."""
 
     def __init__(self, root: str, input_size: int = 256, simcc_res: int = 256,
-                 train: bool = True, max_side: int = 1024):
+                 train: bool = True, max_side: int = 1024,
+                 cache_side: int = 512, cache_dir: str = None):
         self.input_size, self.simcc_res, self.train = input_size, simcc_res, train
         self.max_side = max_side
         self.samples = walk_pairs(root)
         if not self.samples:
             raise RuntimeError(f"no (image, json) pairs under {root}")
+        # ---- 预缩放缓存 (业界 decode-once-reuse 标准做法) ----
+        # 首次启动把全数据集解码并统一缩到 cache_side 存 .npy 到本地;
+        # 之后所有 epoch 直接 np.load, 免去重复 JPEG 解码 (大图场景提速 3-5 倍).
+        self.cache_side = cache_side
+        self.cache_dir = Path(cache_dir) if cache_dir else None
+        if self.cache_dir:
+            self.cache_dir.mkdir(parents=True, exist_ok=True)
 
         self.kpts = []  # 缓存解析结果 (原图像素坐标)
+        self.img_wh = []  # 原图 (w, h), 只读文件头, 供缓存坐标换算
+        from PIL import Image
+        Image.MAX_IMAGE_PIXELS = None
         k_dims = set()
         for img_fp, json_fp in self.samples:
             k = parse_annotation(json_fp)
             k_dims.add(len(k))
             self.kpts.append(k)
+            try:
+                with Image.open(img_fp) as im:
+                    self.img_wh.append(im.size)  # PIL: (w, h)
+            except Exception:
+                img = cv2.imread(str(img_fp))
+                self.img_wh.append((img.shape[1], img.shape[0]))
         if len(k_dims) != 1:
             raise RuntimeError(f"mixed annotation dims {k_dims} in {root}; "
                                f"数据集内 K 必须一致")
@@ -106,21 +123,47 @@ class PalmKeypointDataset(Dataset):
         img = cv2.imread(str(img_fp))
         return (img, (h0, w0)) if img is not None else (None, (h0, w0))
 
+    def _cache_path(self, idx):
+        stem = Path(self.samples[idx][0]).stem
+        return self.cache_dir / f"{stem}_{self.cache_side}.npy"
+
     def _load(self, idx):
         img_fp, _ = self.samples[idx]
-        kpts = self.kpts[idx].copy()      # 原图像素坐标
+        kpts_orig = self.kpts[idx]        # 原图像素坐标 (只读)
+        if self.cache_dir:
+            cp = self._cache_path(idx)
+            if cp.exists():               # 缓存命中: 免解码, 坐标按 原图->缓存图 比例换算
+                img = np.load(cp)
+                sx = img.shape[1] / self.img_wh[idx][0]
+                sy = img.shape[0] / self.img_wh[idx][1]
+                return img, kpts_orig * np.array([sx, sy], dtype=np.float32), img.shape[:2]
+            # 缓存未命中: 解码 -> 坐标转缓存图坐标系 -> 存缓存
+            img0, (h0, w0) = self._imread_scaled(img_fp)
+            if img0 is None:
+                raise RuntimeError(f"unreadable image: {img_fp}")
+            h, w = img0.shape[:2]
+            k0 = kpts_orig.copy()
+            k0[:, 0] *= w / w0
+            k0[:, 1] *= h / h0
+            s = min(1.0, self.cache_side / max(h, w))
+            if s < 1.0:
+                img0 = cv2.resize(img0, (int(w * s), int(h * s)))
+                k0 *= s
+            np.save(cp, img0)
+            return img0, k0, img0.shape[:2]
+        # 无缓存模式 (原逻辑)
+        kpts = kpts_orig.copy()
         img, (h0, w0) = self._imread_scaled(img_fp)
         if img is None:
             raise RuntimeError(f"unreadable image: {img_fp}")
         h, w = img.shape[:2]
-        # 若解码时降了分辨率, 坐标同步缩放
         kpts[:, 0] *= w / w0
         kpts[:, 1] *= h / h0
         scale = min(1.0, self.max_side / max(h, w))
         if scale < 1.0:
             img = cv2.resize(img, (int(w * scale), int(h * scale)))
             kpts *= scale
-            h, w = img.shape[:2]   # 同步为缩放后的尺寸 (供增广/坐标归一化使用)
+            h, w = img.shape[:2]
         return img, kpts, (h, w)
 
     def __getitem__(self, idx):
