@@ -2,6 +2,7 @@ third_party/
 runs/
 data/
 incoming/
+_local/
 docs/survey2026/pdfs/
 *.pt
 *.pth
