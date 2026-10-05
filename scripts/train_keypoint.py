@@ -59,8 +59,8 @@ def main():
     ap.add_argument("--save_every", type=int, default=5,
                     help="每 N 个 epoch 存 last.pt (覆盖写, 磁盘占用恒定; 1=最细粒度)")
     ap.add_argument("--no_resume", action="store_true", help="忽略 last.pt 从零重训")
-    ap.add_argument("--cache_dir", default="E:/data/roi_cache",
-                    help="预缩放缓存目录 (decode-once-reuse); 传 'off' 关闭")
+    ap.add_argument("--cache_dir", default=None,
+                    help="预缩放缓存目录 (decode-once-reuse); 默认 <repo>/runs/roi_cache; 传 'off' 关闭")
     ap.add_argument("--cache_side", type=int, default=512)
     args = ap.parse_args()
 
@@ -72,7 +72,8 @@ def main():
     print(f"device: {device}, torch {torch.__version__}")
     torch.backends.cudnn.benchmark = True  # 输入尺寸固定, 卷积自动调优
 
-    cache = None if args.cache_dir == "off" else args.cache_dir
+    cache = None if args.cache_dir == "off" else (
+        args.cache_dir or str(Path(args.out_dir).parent / "roi_cache"))
     base_train = PalmKeypointDataset(args.data_root, args.input_size, args.simcc_res,
                                      train=True, cache_side=args.cache_side, cache_dir=cache)
     K = base_train.num_keypoints
