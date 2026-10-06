@@ -31,8 +31,9 @@ def split_train_val(root: str, val_fraction=0.1, seed=0):
     """按图像 stem 哈希切分, 跨次运行稳定 (同图永远同侧)."""
     ds = PalmKeypointDataset(root, train=False)
     tr_idx, va_idx = [], []
+    import hashlib
     for i, (img_fp, _) in enumerate(ds.samples):
-        h = hash(Path(img_fp).stem) % 1000
+        h = int(hashlib.md5(Path(img_fp).stem.encode()).hexdigest(), 16) % 1000
         (va_idx if h < val_fraction * 1000 else tr_idx).append(i)
     return ds, tr_idx, va_idx
 
@@ -64,6 +65,7 @@ def main():
     ap.add_argument("--cache_side", type=int, default=512)
     args = ap.parse_args()
 
+    torch.multiprocessing.set_sharing_strategy("file_system")  # Win 1455: 页面文件共享内存不足的标准解法
     device = "cuda" if torch.cuda.is_available() else "cpu"
     out = Path(args.out_dir)
     out.mkdir(parents=True, exist_ok=True)
@@ -93,7 +95,7 @@ def main():
 
     train_dl = DataLoader(train_ds, batch_size=args.batch_size, shuffle=True,
                           num_workers=args.num_workers, drop_last=True, pin_memory=True,
-                          persistent_workers=args.num_workers > 0, prefetch_factor=4 if args.num_workers > 0 else None)
+                          persistent_workers=args.num_workers > 0, prefetch_factor=2 if args.num_workers > 0 else None)
     val_dl = DataLoader(val_ds, batch_size=args.batch_size, shuffle=False,
                         num_workers=args.num_workers)
 
