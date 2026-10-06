@@ -79,12 +79,13 @@ def _soft_argmax(logits: torch.Tensor, beta: float = 10.0) -> torch.Tensor:
 
 def simcc_loss(
     simcc_x: torch.Tensor, simcc_y: torch.Tensor,
-    gt_x: torch.Tensor, gt_y: torch.Tensor, sigma: float = 2.0,
+    gt_x: torch.Tensor, gt_y: torch.Tensor, sigma: float = 6.0,
     reduction: str = "mean",
 ) -> torch.Tensor:
     """标准 SimCC 训练损失: GT 坐标高斯目标 vs 模型分布 (CE).
 
     gt_x/gt_y 为 bin 坐标 (float), (N,K). reduction: mean | none(逐样本, 供顺序不变匹配).
+    sigma 默认 6 (RTMPose 系标配; 过小的 sigma 会让目标分布过尖、训练震荡).
     """
     loss = 0.0
     for simcc, gt, res in ((simcc_x, gt_x, simcc_x.shape[-1]), (simcc_y, gt_y, simcc_y.shape[-1])):

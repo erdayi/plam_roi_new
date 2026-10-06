@@ -51,7 +51,7 @@ def main():
     ap.add_argument("--epochs", type=int, default=60)
     ap.add_argument("--batch_size", type=int, default=64)
     ap.add_argument("--lr", type=float, default=1e-3)
-    ap.add_argument("--sigma", type=float, default=2.0)
+    ap.add_argument("--sigma", type=float, default=6.0)
     ap.add_argument("--lambda_topo", type=float, default=0.05)
     ap.add_argument("--init_weights", default=None,
                     help="encoder 预训练权重 (如 Phase A 识别 checkpoint best.pt, 同构部分自动加载)")
