@@ -55,7 +55,8 @@ def main():
     ap.add_argument("--lambda_topo", type=float, default=0.05)
     ap.add_argument("--init_weights", default=None,
                     help="encoder 预训练权重 (如 Phase A 识别 checkpoint best.pt, 同构部分自动加载)")
-    ap.add_argument("--num_workers", type=int, default=4)
+    ap.add_argument("--num_workers", type=int, default=4,
+                    help="Windows 下 worker 是完整进程各占约 1-1.5GB 内存; 内存紧张用 2")
     ap.add_argument("--iters", type=int, default=0, help=">0 时每 epoch 截断 (冒烟)")
     ap.add_argument("--save_every", type=int, default=5,
                     help="每 N 个 epoch 存 last.pt (覆盖写, 磁盘占用恒定; 1=最细粒度)")
