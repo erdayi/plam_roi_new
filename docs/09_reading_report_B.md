@@ -51,15 +51,19 @@
 | **AHMAD**(2026, INSAIT) | 多任务(稠密+稀疏预测)混合训练 + 辅助蒸馏 | 我们的分割+关键点(+识别)多任务参考 |
 | **Accuracy Compensation**(2026) | 轻量化网络的精度补偿策略 | 部署阶段参考 |
 
-## 四、代码可用清单(已核实的仓库/数据集)
+## 四、代码可用清单(已核实仓库内容,2026-10 更新)
 
-| 资源 | 地址 | 用途 |
-|---|---|---|
-| GKDT 代码(ECCV 2026) | github.com/AlanLuSun/General-Keypoint-Detection | 零样本对比 / 方法参考 |
-| MegaKPT 数据集(HF) | huggingface.co/datasets/changshenglu/MegaKPT | 预训练数据源(M1 链) |
-| SimCC 官方 | github.com/leeyegy/SimCC | 头实现对照 |
-| MMPose(RTMPose/RTMW) | github.com/open-mmlab/mmpose | 蒸馏老师 / 工程基线 |
-| TopoFR / LVFace / SapiensID | 已克隆 third_party/ | M1 权重与对照 |
+| 资源 | 地址 | 核实结果 | 用途 |
+|---|---|---|---|
+| **GKDT**(ECCV 2026) | github.com/AlanLuSun/General-Keypoint-Detection(已克隆 third_party/gkdt) | ✅ 完整训练/评测框架 + **GKDT-L/H 模型已放**(DINOv3 底座);**MegaKPT=29 库统一、130 万+实例,含 300W/OneHand/HInt/Hand X-ray**;支持 visual/text prompt 零样本,OneHand PCK@0.1 达 92-97 | ①零样本对比行;②M1 迁移链预训练源;③continual learning 接口可参考 |
+| **Hand Visibility Detector**(2026) | github.com/ryhara/hand_visibility_detector(已克隆 third_party/) | ✅ 完整训练+推理+HF 模型+Demo;**基于 WiLoR-mini 构建**(与我们现有 WiLoR 管线同源!) | 谷点可见性头参考;质量门控;可零成本试跑 |
+| SimCC 官方 | github.com/leeyegy/SimCC | 头实现对照 | 对照 |
+| MMPose(RTMPose/RTMW) | github.com/open-mmlab/mmpose | 蒸馏老师/工程基线 | P1 |
+| TopoFR / LVFace / SapiensID | 已克隆 third_party/ | M1 权重与对照 | 已用 |
+| PKLNet 官方(组内) | github.com/xuliangcs/pklnet | 组内前作代码 | 对比基线 |
+| RobustPalmRoi | github.com/leosocy/RobustPalmRoi | 手机图掌 ROI 开源实现 | related |
+
+**KCNet 补充核实**:作者林浩恒等,华南理工大学(与贾伟组不同单位);CCBR 2024(论文集 LNCS 15352, 2025);**5 个关键点**,引 SimCC/RTMPose/Lite-HRNet(坐标分类+轻量 HR 谱系确认);无公开代码;全文付费(校园网可下)。SCUT_PV_v1 即该组知名掌静脉库。
 
 ## 五、取长补短行动项(合并进实验计划)
 
@@ -67,10 +71,11 @@
 |---|---|---|---|
 | A1 | eval 加**几何自洽失败检测**(谷点三角形自洽分,免训练) | Meta Pose | 下次 eval |
 | A2 | SimCC 头加**位置编码**(PECC 式) | PECC | M3 后的头升级 |
-| A3 | **KCNet 对比行**+论文差异化段落(掌纹 vs 掌静脉、训练创新栈) | KCNet LNCS 2025 | 写作期 |
-| A4 | MegaKPT 手部预训练源(替代/并列 FoundHand) | GKDT | M1 扩展 |
+| A3 | **KCNet 对比行**+论文差异化段落(掌纹 vs 掌静脉、训练创新栈) | KCNet CCBR 2024/LNCS 2025(华南理工) | 写作期 |
+| A4 | **GKDT 零样本行** + MegaKPT 手部预训练源(替代/并列 FoundHand) | GKDT ECCV 2026(代码已克隆核实) | M1 扩展 |
 | A5 | 多库混训协议对标 FreqFLD/EFLD 的 all-in-one 配方 | 两者 | M4 跨库阶段 |
-| A6 | 校园网获取 KCNet、Geometry-Guided、GKDT 全文精读 | 三篇 | 近期 |
+| A6 | **Hand Visibility Detector 试跑**(WiLoR-mini 同源,谷点可见性门控) | AIST 2026(代码已克隆核实) | 质量门控阶段 |
+| A7 | 校园网获取 KCNet、Geometry-Guided、GKDT 全文精读 | 三篇 | 近期 |
 
 ## 六、规模与结论
 
