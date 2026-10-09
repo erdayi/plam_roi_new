@@ -61,6 +61,7 @@ def main():
     ap.add_argument("--save_every", type=int, default=5,
                     help="每 N 个 epoch 存 last.pt (覆盖写, 磁盘占用恒定; 1=最细粒度)")
     ap.add_argument("--no_resume", action="store_true", help="忽略 last.pt 从零重训")
+    ap.add_argument("--no_cudnn", action="store_true", help="完全禁用 cuDNN (崩溃后备)")
     ap.add_argument("--cache_dir", default=None,
                     help="预缩放缓存目录 (decode-once-reuse); 默认 <repo>/runs/roi_cache; 传 'off' 关闭")
     ap.add_argument("--cache_side", type=int, default=512)
@@ -73,7 +74,11 @@ def main():
     torch.manual_seed(0)
     random.seed(0)
     print(f"device: {device}, torch {torch.__version__}")
-    torch.backends.cudnn.benchmark = True  # 输入尺寸固定, 卷积自动调优
+    # cudnn.benchmark 仅对常规 CNN 开启; iResNet 的 PReLU/特殊下采样在部分
+    # GPU+torch 组合(如 3070+torch2.2)上会触发 cuDNN 坏算法导致 backward abort
+    torch.backends.cudnn.benchmark = args.backbone != "iresnet18"
+    if args.no_cudnn:
+        torch.backends.cudnn.enabled = False  # 终极后备: 完全绕开 cuDNN (慢但稳)
 
     cache = None if args.cache_dir == "off" else (
         args.cache_dir or str(Path(args.out_dir).parent / "roi_cache"))
