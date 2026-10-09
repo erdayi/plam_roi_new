@@ -1,0 +1,654 @@
+{
+ "landmark": [
+  {
+   "title": "Deployment-Oriented Session-wise Meta-Calibration for Landmark-Based Webcam Gaze Tracking",
+   "year": "2026",
+   "abstract": "Practical webcam gaze tracking is constrained not only by error, but also by calibration burden, robustness to head motion and session drift, runtime footprint, and browser use. We therefore target a deployment-oriented operating point rather than the image large-backbone regime. We cast landmark-based point-of-regard estimation as session-wise adaptation: a shared geometric encoder produces embeddings that can be aligned to a new session from a small calibration set. We present Equivariant Meta-Calibrated Gaze (EMC-Gaze), a lightweight landmark-only method combining an E(3)-equivariant landmark-graph encoder, local eye geometry, binocular emphasis, auxiliary 3D gaze-direction supervision, and a closed-form ridge calibrator differentiated through episodic meta-training. To reduce pose leakage, we use a two-view canonicalization consistency loss. The deployed predictor uses only facial landmarks and fits a per-session ridge head from brief calibration. In a fixation-style interactive ev",
+   "pdf": "https://arxiv.org/pdf/2603.12388v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "f9"
+   ],
+   "has_code_hint": false,
+   "url": "http://arxiv.org/abs/2603.12388v1"
+  },
+  {
+   "title": "FreqFLD: Towards All-in-One Facial Landmark Detection via Frequency Modulation",
+   "year": "2026",
+   "abstract": "Recent progress in deep learning has significantly advanced facial landmark detection. However, most existing methods process features in a spatial-domain manner under a dataset-specific training paradigm, which overlooks the fact that facial landmark detection is inherently geometry-driven and sensitive to frequency variations, thereby limiting cross-dataset generalization under complex scenarios and hindering the development of a facial landmark detection model. To address this issue, we propose \\textbf{FreqFLD}, a \\textbf{freq}uency-modulated framework towards All-in-One \\textbf{f}acial \\textbf{l}andmark \\textbf{d}etection. Specifically, FreqFLD introduces a Frequency Modulation Module (FreqMoM) to explicitly induce the frequency prior by decoupling and modulating low- and high-frequency components, which is then injected into subsequent feature modeling to enable balanced modeling of global facial structure and local landmark details. Furthermore, FreqFLD employs a Frequency-Modula",
+   "pdf": "https://arxiv.org/pdf/2609.10278v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "f1"
+   ],
+   "has_code_hint": true,
+   "url": "http://arxiv.org/abs/2609.10278v1"
+  },
+  {
+   "title": "Efficient Facial Landmark Detection for Embedded Systems",
+   "year": "2024",
+   "abstract": "This paper introduces the Efficient Facial Landmark Detection (EFLD) model, specifically designed for edge devices confronted with the challenges related to power consumption and time latency. EFLD features a lightweight backbone and a flexible detection head, each significantly enhancing operational efficiency on resource-constrained devices. To improve the model's robustness, we propose a cross-format training strategy. This strategy leverages a wide variety of publicly accessible datasets to enhance the model's generalizability and robustness, without increasing inference costs. Our ablation study highlights the significant impact of each component on reducing computational demands, model size, and improving accuracy. EFLD demonstrates superior performance compared to competitors in the IEEE ICME 2024 Grand Challenges PAIR Competition, a contest focused on low-power, efficient, and accurate facial-landmark detection for embedded systems, showcasing its effectiveness in real-world fa",
+   "pdf": "https://arxiv.org/pdf/2407.10228v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "f1"
+   ],
+   "has_code_hint": false,
+   "url": "http://arxiv.org/abs/2407.10228v1"
+  },
+  {
+   "title": "FaceLift: Semi-supervised 3D Facial Landmark Localization",
+   "year": "2024",
+   "abstract": "3D facial landmark localization has proven to be of particular use for applications, such as face tracking, 3D face modeling, and image-based 3D face reconstruction. In the supervised learning case, such methods usually rely on 3D landmark datasets derived from 3DMM-based registration that often lack spatial definition alignment, as compared with that chosen by hand-labeled human consensus, e.g., how are eyebrow landmarks defined? This creates a gap between landmark datasets generated via high-quality 2D human labels and 3DMMs, and it ultimately limits their effectiveness. To address this issue, we introduce a novel semi-supervised learning approach that learns 3D landmarks by directly lifting (visible) hand-labeled 2D landmarks and ensures better definition alignment, without the need for 3D landmark datasets. To lift 2D landmarks to 3D, we leverage 3D-aware GANs for better multi-view consistency learning and in-the-wild multi-frame videos for robust cross-generalization. Empirical ex",
+   "pdf": "https://arxiv.org/pdf/2405.19646v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "f9"
+   ],
+   "has_code_hint": false,
+   "url": "http://arxiv.org/abs/2405.19646v1"
+  },
+  {
+   "title": "landmarker: a Toolkit for Anatomical Landmark Localization in 2D/3D Images",
+   "year": "2025",
+   "abstract": "Anatomical landmark localization in 2D/3D images is a critical task in medical imaging. Although many general-purpose tools exist for landmark localization in classical computer vision tasks, such as pose estimation, they lack the specialized features and modularity necessary for anatomical landmark localization applications in the medical domain. Therefore, we introduce landmarker, a Python package built on PyTorch. The package provides a comprehensive, flexible toolkit for developing and evaluating landmark localization algorithms, supporting a range of methodologies, including static and adaptive heatmap regression. landmarker enhances the accuracy of landmark identification, streamlines research and development processes, and supports various image formats and preprocessing pipelines. Its modular design allows users to customize and extend the toolkit for specific datasets and applications, accelerating innovation in medical imaging. landmarker addresses a critical need for precisi",
+   "pdf": "https://arxiv.org/pdf/2501.10098v2",
+   "doi": "10.1016/j.softx.2025.102165",
+   "cites": 0,
+   "hits": [
+    "f9"
+   ],
+   "has_code_hint": false,
+   "url": "http://arxiv.org/abs/2501.10098v2"
+  },
+  {
+   "title": "Landmark-Based Node Representations for Shortest Path Distance Approximations in Random Graphs",
+   "year": "2025",
+   "abstract": "Learning node representations is a fundamental problem in graph machine learning. While existing embedding methods effectively preserve local similarity measures, they often fail to capture global functions like graph distances. Inspired by Bourgain's seminal work on Hilbert space embeddings of metric spaces (1985), we study the performance of local distance-preserving node embeddings. Known as landmark-based algorithms, these embeddings approximate pairwise distances by computing shortest paths from a small subset of reference nodes called landmarks. Our main theoretical contribution shows that random graphs, such as Erdos-Renyi random graphs, require lower dimensions in landmark-based embeddings compared to worst-case graphs. Empirically, we demonstrate that the GNN-based approximations for the distances to landmarks generalize well to larger real-world networks, offering a scalable and transferable alternative for graph representation learning.",
+   "pdf": "https://arxiv.org/pdf/2504.08216v3",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "f9"
+   ],
+   "has_code_hint": false,
+   "url": "http://arxiv.org/abs/2504.08216v3"
+  },
+  {
+   "title": "Multi-Scale Heatmap Regression with Structural Prior and Graph-Aware Refinement for Robust Cephalometric Landmark Localization",
+   "year": "2025",
+   "abstract": "",
+   "pdf": "https://doi.org/10.2139/ssrn.5518542",
+   "doi": "10.2139/ssrn.5518542",
+   "cites": 0,
+   "hits": [
+    "f9"
+   ],
+   "has_code_hint": false,
+   "url": "https://doi.org/10.2139/ssrn.5518542"
+  },
+  {
+   "title": "Optimising for the Unknown: Domain Alignment for Cephalometric Landmark Detection",
+   "year": "2024",
+   "abstract": "Cephalometric Landmark Detection is the process of identifying key areas for cephalometry. Each landmark is a single GT point labelled by a clinician. A machine learning model predicts the probability locus of a landmark represented by a heatmap. This work, for the 2024 CL-Detection MICCAI Challenge, proposes a domain alignment strategy with a regional facial extraction module and an X-ray artefact augmentation procedure. The challenge ranks our method's results as the best in MRE of 1.186mm and third in the 2mm SDR of 82.04% on the online validation leaderboard. The code is available at https://github.com/Julian-Wyatt/OptimisingfortheUnknown.",
+   "pdf": "https://arxiv.org/pdf/2410.04445v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "f1",
+    "f9"
+   ],
+   "has_code_hint": true,
+   "url": "http://arxiv.org/abs/2410.04445v1"
+  }
+ ],
+ "kpt_method": [
+  {
+   "title": "6D Pose Estimation via Keypoint Heatmap Regression with RGB-D Residual Neural Networks",
+   "year": "2026",
+   "abstract": "In this paper, we propose a modular framework for 6D pose estimation based on keypoint heatmap regression. Our approach combines YOLOv10m for object detection with a ResNet18-based network that predicts 2D heatmaps from RGB images. Keypoints extracted from these heatmaps are used to estimate the 6D object pose via the PnP RANSAC algorithm. We compare different keypoint selection strategies to assess their impact on pose accuracy. Additionally, we extend the baseline by incorporating depth data using a cross-fusion architecture, which enables interaction between RGB and depth features at multiple stages. We further explore general training improvements, such as experimenting with activation functions and learning rate scheduling strategies to improve model performance. Our best RGB-only model achieved a mean ADD-based accuracy of 84.50%, while the RGB-D fusion model reached 92.41% on the LINEMOD dataset. The code is available at https://github.com/ameermasood/HeatNet.",
+   "pdf": "https://arxiv.org/pdf/2605.08059v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "f6"
+   ],
+   "has_code_hint": true,
+   "url": "http://arxiv.org/abs/2605.08059v1"
+  },
+  {
+   "title": "PECC: Position Encoding Coordinate Classification System Design for Human Pose Estimation",
+   "year": "2026",
+   "abstract": "Coordinate classification is an efficient approach to 2-D human pose estimation (HPE), treating keypoint predictions as sub-pixel bins along horizontal and vertical axes, thereby avoiding the computationally intensive upsampling process required in traditional heatmap-based methods. In this article, we introduce the Position Encoding Coordinate Classification (PECC) system, which enhances coordinate classification by embedding position information directly into keypoint feature representations through a novel position encoding mechanism. We further design a tailored attention mechanism, Filtering Amplified Attention (FAA), optimized for coordinate classification. FAA provides finer relative positional information, improving the system’s ability to model relationships between keypoints and enhancing coordinate localization accuracy. Our method maintains the efficiency of coordinate classification by utilizing 1-D vectors, significantly reducing model parameters and computational cost. A",
+   "pdf": "",
+   "doi": "10.1109/tsmc.2025.3649204",
+   "cites": 0,
+   "hits": [
+    "f5"
+   ],
+   "has_code_hint": false,
+   "url": "https://doi.org/10.1109/tsmc.2025.3649204"
+  },
+  {
+   "title": "Enhancing Scene Coordinate Regression With Efficient Keypoint Detection and Sequential Information",
+   "year": "2025",
+   "abstract": "Scene Coordinate Regression (SCR) is a visual localization technique that utilizes deep neural networks (DNN) to directly regress 2D-3D correspondences for camera pose estimation. However, current SCR methods often face challenges in handling repetitive textures and meaningless areas due to their reliance on implicit triangulation. In this letter, we propose an efficient and accurate SCR system. Compared to existing SCR methods, we propose a unified architecture for both scene encoding and salient keypoint detection, allowing our system to prioritize the encoding of informative regions. This design significantly improves computational efficiency. Additionally, we introduce a mechanism that utilizes sequential information during both mapping and relocalization. The proposed method enhances the implicit triangulation, especially in environments with repetitive textures. Comprehensive experiments conducted across indoor and outdoor datasets demonstrate that the proposed system outperforms",
+   "pdf": "https://arxiv.org/pdf/2412.06488",
+   "doi": "10.1109/lra.2025.3598670",
+   "cites": 5,
+   "hits": [
+    "f6"
+   ],
+   "has_code_hint": false,
+   "url": "https://doi.org/10.1109/lra.2025.3598670"
+  },
+  {
+   "title": "DINOKey: Transformer-Based Keypoint Detection for Wildlife Monitoring in Aerial Imagery",
+   "year": "2026",
+   "abstract": "Abstract. Point annotations offer a lightweight alternative to bounding boxes for object detection, particularly in aerial wildlife monitoring where objects are small, dense, and precise extents are unnecessary. However, most detectors are designed for box supervision. We introduce DINOKey, a transformer-based detector that operates directly on 2D keypoints by adapting the DINO framework to predict point coordinates. The model combines L1 regression loss, focal loss, and average Hausdorff distance to enforce both local accuracy and global consistency. On an aerial elephant dataset, DINOKey achieves a mAP of 0.786. Ablations show the Hausdorff term is critical in dense scenes, while focal loss improves stability under class imbalance. Results demonstrate that point-based transformer detectors are an effective alternative to box-based methods for small-object, high-density settings.Point annotations offer a lightweight alternative to bounding boxes for object detection, particularly in a",
+   "pdf": "https://doi.org/10.5194/isprs-archives-xlix-b3-2026-961-2026",
+   "doi": "10.5194/isprs-archives-xlix-b3-2026-961-2026",
+   "cites": 0,
+   "hits": [
+    "f2"
+   ],
+   "has_code_hint": false,
+   "url": "https://doi.org/10.5194/isprs-archives-xlix-b3-2026-961-2026"
+  },
+  {
+   "title": "Vitcc: a Vision Transformer Coordinate Classification Perspective for Human Pose Estimation",
+   "year": "2024",
+   "abstract": "Simple coordinate classification (SimCC) utilizes coordinate classification to alleviate the long-standing quantization error problem in human pose estimation (HPE) but ignores the spatial relationships and prior knowledge hidden between coordinates. To tackle this issue, we propose Vision Transformer Coordinate Classification (VitCC), a more effective coordinate separation method. VitCC innovatively integrates the Vision Transformer (Vit) architecture into the HPE pipeline, transforming the keypoint detection task into a pixel input-based classification task. Specifically, this method converts keypoint heatmaps into different tokens and utilizes a Transformer with dynamic attention and global context performance for coordinate separation and prediction. Additionally, we introduce the Effective Sparse Modeling (ESM) transformer block to reduce semantic ambiguities in the self-attention mechanism and further model the local spatial context efficiently. Comprehensively experiments on two",
+   "pdf": "https://doi.org/10.1145/3700035.3700046",
+   "doi": "10.1145/3700035.3700046",
+   "cites": 3,
+   "hits": [
+    "f5"
+   ],
+   "has_code_hint": false,
+   "url": "https://doi.org/10.1145/3700035.3700046"
+  },
+  {
+   "title": "GKDT: General Keypoint Detection Transformer",
+   "year": "2026",
+   "abstract": "With the emergence of various pre-trained vision and language models, computer vision is shifting from narrow-domain to open-domain recognition. The construction of a more powerful yet general keypoint detection (GKD) model to support diverse tasks has become increasingly important in the field. To this end, we firstly present a large-scale unified keypoint dataset called MegaKPT. The dataset is composed of over 1.3 million diverse object instances from twenty-nine existing datasets, and enjoys high-quality unified annotations with keypoint text descriptions. Based on MegaKPT, we develop GKDT, a simple, flexible and powerful DINOv3 based Transformer model for General Keypoint Detection. Our GKDT supports visual prompts, text prompts, or both. To enhance model training, we also propose a suite of useful strategies such as mix-modal prompted training and dynamic importance sampling. By testing over 22 test sets with seen or unseen objects, our single GKDT model shows strong performance a",
+   "pdf": "https://arxiv.org/pdf/2607.00752v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "f2"
+   ],
+   "has_code_hint": true,
+   "url": "http://arxiv.org/abs/2607.00752v1"
+  },
+  {
+   "title": "FPTR: Facial Pose Estimation Transformer Without Keypoint Detection",
+   "year": "2026",
+   "abstract": "",
+   "pdf": "",
+   "doi": "10.1007/978-981-95-4966-5_8",
+   "cites": 0,
+   "hits": [
+    "f2"
+   ],
+   "has_code_hint": false,
+   "url": "https://doi.org/10.1007/978-981-95-4966-5_8"
+  },
+  {
+   "title": "KeyRegionPose: Region-Aware Feature Interaction and Multi-Scale Token Pruning for Efficient Human Pose Estimation",
+   "year": "2025",
+   "abstract": "The primary challenge in deploying Human Pose Estimation (HPE) methods in real-world applications lies in balancing computational speed, model compactness, and prediction accuracy. Existing methods achieve strong performance in one or two aspects, but usually at the expense of the remaining one. To overcome this trade-off, we propose KeyRegionPose, a novel framework that achieves high accuracy while reducing model size and computational cost. Central to our design is the Region Focus Mechanism, which enables the model to concentrate on keypoint-relevant regions rather than the entire image. During training, we generate intermediate keypoint proposals to estimate keypoint-specific areas, from which the model learns region-focused features and refines predictions. To ensure accurate keypoint localization and enhance final pose estimation performance, we introduce a Cross-Representation Consistency Loss (CRC Loss) that enforces alignment between the predicted heatmaps and the regressed ke",
+   "pdf": "https://dl.acm.org/doi/pdf/10.1145/3743093.3771036",
+   "doi": "10.1145/3743093.3771036",
+   "cites": 0,
+   "hits": [
+    "f19"
+   ],
+   "has_code_hint": false,
+   "url": "https://doi.org/10.1145/3743093.3771036"
+  }
+ ],
+ "hand": [
+  {
+   "title": "Hand Visibility Detector: Per-Keypoint Visibility Estimation for Hands",
+   "year": "2026",
+   "abstract": "Hand Pose Estimation (HPE) is a fundamental technology for various applications such as AR/VR and robotics. In these applications, the visibility of each hand joint in the image is crucial for assessing the reliability of estimation results under occlusion. However, most existing HPE methods output joint positions without explicitly indicating their visibility. Although some methods account for occlusion or visibility, visibility estimation has mainly been used as an auxiliary signal for improving pose estimation. To our knowledge, per-joint hand visibility estimation has not been systematically studied as a standalone task. In this work, we propose Hand Visibility Detector, a model for estimating the visibility of individual hand joints, and present the first systematic investigation of visibility estimation as an independent task. We show that leveraging the prior knowledge of HPE models pretrained on large-scale data as a backbone yields high performance in this task. We further dem",
+   "pdf": "https://arxiv.org/pdf/2608.11574v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "f11"
+   ],
+   "has_code_hint": true,
+   "url": "http://arxiv.org/abs/2608.11574v1"
+  },
+  {
+   "title": "Joint Finger Valley Points-Free ROI Detection and Recurrent Layer Aggregation for Palmprint Recognition in Open Environment",
+   "year": "2024",
+   "abstract": "Cooperative palmprint recognition, pivotal for civilian and commercial uses, stands as the most essential and broadly demanded branch in biometrics. These applications, often tied to financial transactions, require high accuracy in recognition. Currently, research in palmprint recognition primarily aims to enhance accuracy, with relatively few studies addressing the automatic and flexible palm region of interest (ROI) extraction (PROIE) suitable for complex scenes. Particularly, the intricate conditions of open environment, alongside the constraint of human finger skeletal extension limiting the visibility of Finger Valley Points (FVPs), render conventional FVPs-based PROIE methods ineffective. In response to this challenge, we propose an FVPs-Free Adaptive ROI Detection (FFARD) approach, which utilizes cross-dataset hand shape semantic transfer (CHSST) combined with the constrained palm inscribed circle search, delivering exceptional hand segmentation and precise PROIE. Furthermore, a",
+   "pdf": "",
+   "doi": "10.1109/tifs.2024.3516539",
+   "cites": 9,
+   "hits": [
+    "f13"
+   ],
+   "has_code_hint": true,
+   "url": "https://doi.org/10.1109/tifs.2024.3516539"
+  },
+  {
+   "title": "Detecting Pose Estimation Failures via Keypoint Self-Consistency",
+   "year": "2026",
+   "abstract": "One common approach to pose estimation involves predicting object keypoints in an image, followed by using Perspective-n-Point algorithms to compute the object's rotation and translation relative to the camera. While rotations preserve object shapes, this property is often neglected in keypoint-based pose estimation methods, where keypoints are typically predicted independently from each other. As imprecise keypoint predictions negatively affects pose estimation accuracy, it also limits its reliability in downstream tasks. In this work, we explore whether such inaccurate pose estimates can be identified by simply examining spatial locations between 2D keypoints. We propose a set of hand-crafted geometric features that capture the self-consistency of keypoint predictions, including pairwise distances, reprojection consistency, as well as render and mask consistency. Despite its simplicity, a logistic regression classifier trained on these features reliably detects pose estimation failur",
+   "pdf": "https://arxiv.org/pdf/2608.03516v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "f11"
+   ],
+   "has_code_hint": false,
+   "url": "http://arxiv.org/abs/2608.03516v1"
+  },
+  {
+   "title": "Learning Transformation-Isomorphic Latent Space for Accurate Hand Pose Estimation",
+   "year": "2025",
+   "abstract": "Vision-based regression tasks, such as hand pose estimation, have achieved higher accuracy and faster convergence through representation learning. However, existing representation learning methods often encounter the following issues: the high semantic level of features extracted from images is inadequate for regressing low-level information, and the extracted features include task-irrelevant information, reducing their compactness and interfering with regression tasks. To address these challenges, we propose TI-Net, a highly versatile visual Network backbone designed to construct a Transformation Isomorphic latent space. Specifically, we employ linear transformations to model geometric transformations in the latent space and ensure that {\\rm TI-Net} aligns them with those in the image space. This ensures that the latent features capture compact, low-level information beneficial for pose estimation tasks. We evaluated TI-Net on the hand pose estimation task to demonstrate the network's",
+   "pdf": "https://arxiv.org/pdf/2502.12535v1",
+   "doi": "10.2312/pg.20251270",
+   "cites": 0,
+   "hits": [
+    "f11",
+    "f3"
+   ],
+   "has_code_hint": false,
+   "url": "http://arxiv.org/abs/2502.12535v1"
+  },
+  {
+   "title": "Enhancing Monocular 3D Hand Reconstruction with Learned Texture Priors",
+   "year": "2025",
+   "abstract": "We revisit the role of texture in monocular 3D hand reconstruction, not as an afterthought for photorealism, but as a dense, spatially grounded cue that can actively support pose and shape estimation. Our observation is simple: even in high-performing models, the overlay between predicted hand geometry and image appearance is often imperfect, suggesting that texture alignment may be an underused supervisory signal. We propose a lightweight texture module that embeds per-pixel observations into UV texture space and enables a novel dense alignment loss between predicted and observed hand appearances. Our approach assumes access to a differentiable rendering pipeline and a model that maps images to 3D hand meshes with known topology, allowing us to back-project a textured hand onto the image and perform pixel-based alignment. The module is self-contained and easily pluggable into existing reconstruction pipelines. To isolate and highlight the value of texture-guided supervision, we augmen",
+   "pdf": "https://arxiv.org/pdf/2508.09629v2",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "f11"
+   ],
+   "has_code_hint": false,
+   "url": "http://arxiv.org/abs/2508.09629v2"
+  },
+  {
+   "title": "HOSt3R: Keypoint-free Hand-Object 3D Reconstruction from RGB images",
+   "year": "2025",
+   "abstract": "Hand-object 3D reconstruction has become increasingly important for applications in human-robot interaction and immersive AR/VR experiences. A common approach for object-agnostic hand-object reconstruction from RGB sequences involves a two-stage pipeline: hand-object 3D tracking followed by multi-view 3D reconstruction. However, existing methods rely on keypoint detection techniques, such as Structure from Motion (SfM) and hand-keypoint optimization, which struggle with diverse object geometries, weak textures, and mutual hand-object occlusions, limiting scalability and generalization. As a key enabler to generic and seamless, non-intrusive applicability, we propose in this work a robust, keypoint detector-free approach to estimating hand-object 3D transformations from monocular motion video/images. We further integrate this with a multi-view reconstruction pipeline to accurately recover hand-object 3D shape. Our method, named HOSt3R, is unconstrained, does not rely on pre-scanned obje",
+   "pdf": "https://arxiv.org/pdf/2508.16465v2",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "f11"
+   ],
+   "has_code_hint": false,
+   "url": "http://arxiv.org/abs/2508.16465v2"
+  },
+  {
+   "title": "Dynamic Hand Gesture Detection using CNN-based Keypoint Estimation",
+   "year": "2025",
+   "abstract": "Accurate and real-time hand gesture detection is crucial for advancing Human-Computer Interaction (HCI) applications. However, conventional methods often struggle with dynamic gestures due to factors such as motion blur, varying lighting conditions, and complex hand shapes. This research delves into developing a robust CNN-based hand gesture detection system to overcome these limitations. Trained and tested on real-life static and dynamic gesture datasets, the proposed model exhibits significant accuracy improvements over existing methods, achieving average precisions of 92.87% and 95.17%, respectively. This research presents a novel multi-layered CNN for accurate 3D hand poses estimation in real-time. By leveraging the power of CNNs and incorporating 3D key points, the proposed model achieves significant accuracy improvements over existing methods while maintaining real-time performance. This opens up new possibilities for hand gesture-based HCI applications, paving the way for more n",
+   "pdf": "https://www.internationaljournalssrg.org/../IJECE/2025/Volume12-Issue4/IJECE-V12I4P113.pdf",
+   "doi": "10.14445/23488549/ijece-v12i4p113",
+   "cites": 0,
+   "hits": [
+    "f11"
+   ],
+   "has_code_hint": false,
+   "url": "https://doi.org/10.14445/23488549/ijece-v12i4p113"
+  },
+  {
+   "title": "Hand 3D Keypoint Estimation Application Based on Graph Neural Networks",
+   "year": "2025",
+   "abstract": "",
+   "pdf": "https://doi.org/10.2991/978-94-6463-742-7_50",
+   "doi": "10.2991/978-94-6463-742-7_50",
+   "cites": 0,
+   "hits": [
+    "f11"
+   ],
+   "has_code_hint": false,
+   "url": "https://doi.org/10.2991/978-94-6463-742-7_50"
+  }
+ ],
+ "palm": [
+  {
+   "title": "Region of Interest Extraction for Palm in the Wild",
+   "year": "2025",
+   "abstract": "",
+   "pdf": "",
+   "doi": "10.1007/978-981-96-1068-6_13",
+   "cites": 1,
+   "hits": [
+    "f12"
+   ],
+   "has_code_hint": false,
+   "url": "https://doi.org/10.1007/978-981-96-1068-6_13"
+  },
+  {
+   "title": "Geometry-Guided Affine-Invariant ROI Extraction for Palm Biometrics",
+   "year": "2026",
+   "abstract": "",
+   "pdf": "",
+   "doi": "10.1109/icigp68997.2026.11619844",
+   "cites": 0,
+   "hits": [
+    "f12"
+   ],
+   "has_code_hint": false,
+   "url": "https://doi.org/10.1109/icigp68997.2026.11619844"
+  },
+  {
+   "title": "CAAP: Capture-Aware Adversarial Patch Attacks on Palmprint Recognition Models",
+   "year": "2026",
+   "abstract": "Palmprint recognition is deployed in security-critical applications, including access control and palm-based payment, due to its contactless acquisition and highly discriminative ridge-and-crease textures. However, the robustness of deep palmprint recognition systems against physically realizable attacks remains insufficiently understood. Existing studies are largely confined to the digital setting and do not adequately account for the texture-dominant nature of palmprint recognition or the distortions introduced during physical acquisition. To address this gap, we propose CAAP, a capture-aware adversarial patch framework for palmprint recognition. CAAP learns a universal patch that can be reused across inputs while remaining effective under realistic acquisition variation. To match the structural characteristics of palmprints, the framework adopts a cross-shaped patch topology, which enlarges spatial coverage under a fixed pixel budget and more effectively disrupts long-range texture ",
+   "pdf": "https://arxiv.org/pdf/2604.06987v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "f4"
+   ],
+   "has_code_hint": true,
+   "url": "http://arxiv.org/abs/2604.06987v1"
+  },
+  {
+   "title": "Deep Learning in Palmprint Recognition-A Comprehensive Survey",
+   "year": "2025",
+   "abstract": "Palmprint recognition has emerged as a prominent biometric technology, widely applied in diverse scenarios. Traditional handcrafted methods for palmprint recognition often fall short in representation capability, as they heavily depend on researchers' prior knowledge. Deep learning (DL) has been introduced to address this limitation, leveraging its remarkable successes across various domains. While existing surveys focus narrowly on specific tasks within palmprint recognition-often grounded in traditional methodologies-there remains a significant gap in comprehensive research exploring DL-based approaches across all facets of palmprint recognition. This paper bridges that gap by thoroughly reviewing recent advancements in DL-powered palmprint recognition. The paper systematically examines progress across key tasks, including region-of-interest segmentation, feature extraction, and security/privacy-oriented challenges. Beyond highlighting these advancements, the paper identifies current",
+   "pdf": "https://arxiv.org/pdf/2501.01166v2",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "f17",
+    "f4"
+   ],
+   "has_code_hint": false,
+   "url": "http://arxiv.org/abs/2501.01166v2"
+  },
+  {
+   "title": "AMCOA: Agent Motion Control With Obstacle Avoidance for Efficient Palm ROI Extraction",
+   "year": "2025",
+   "abstract": "Palm recognition facilitates various real-world applications such as security access control and identity verification. The contactless method of acquiring palm images significantly reduces the risk of bacterial transmission and enhances user-friendliness. However, this approach also presents inherent difficulties and challenges. Accurately identifying the region of interest (ROI) is crucial for feature extraction and recognition. The absence of strict guidelines regarding the position and angle of the user’s palm during contactless image acquisition complicates the accurate localization and extraction of the ROI. To address this issue, we propose an innovative ROI extraction method that utilizes Agent Motion Control with Obstacle Avoidance (AMCOA). The agent dynamically identifies finger valley points while navigating and avoiding obstacles in the image, enabling the effective extraction of both the palmprint and palm vein ROIs based on the positions of two keypoints within the finger",
+   "pdf": "",
+   "doi": "10.1109/tim.2025.3560751",
+   "cites": 0,
+   "hits": [
+    "f12"
+   ],
+   "has_code_hint": false,
+   "url": "https://doi.org/10.1109/tim.2025.3560751"
+  },
+  {
+   "title": "Noncontact Palm Vein ROI Extraction Based on Improved Lightweight HRnet in Complex Backgrounds",
+   "year": "2024",
+   "abstract": "The extraction of ROI (region of interest) was a key step in noncontact palm vein recognition, which was crucial for the subsequent feature extraction and feature matching. A noncontact palm vein ROI extraction algorithm based on the improved HRnet for keypoints localization was proposed for dealing with hand gesture irregularities, translation, scaling, and rotation in complex backgrounds. To reduce the computation time and model size for ultimate deploying in low‐cost embedded systems, this improved HRnet was designed to be lightweight by reconstructing the residual block structure and adopting depth‐separable convolution, which greatly reduced the model size and improved the inference speed of network forward propagation. Next, the palm vein ROI localization and palm vein recognition are processed in self‐built dataset and two public datasets (CASIA and TJU‐PV). The proposed improved HRnet algorithm achieved 97.36% accuracy for keypoints detection on self‐built palm vein dataset and",
+   "pdf": "https://downloads.hindawi.com/journals/ietbm/2024/4924184.pdf",
+   "doi": "10.1049/2024/4924184",
+   "cites": 5,
+   "hits": [
+    "f12"
+   ],
+   "has_code_hint": false,
+   "url": "https://doi.org/10.1049/2024/4924184"
+  },
+  {
+   "title": "Compression Metadata-assisted RoI Extraction and Adaptive Inference for Efficient Video Analytics",
+   "year": "2025",
+   "abstract": "Video analytics demand substantial computing resources, posing significant challenges in computing resource-constrained environment. In this paper, to achieve high accuracy with acceptable computational workload, we propose a cost-effective regions of interest (RoIs) extraction and adaptive inference scheme based on the informative encoding metadata. Specifically, to achieve efficient RoI-based analytics, we explore motion vectors from encoding metadata to identify RoIs in non-reference frames through morphological opening operation. Furthermore, considering the content variation of RoIs, which calls for inference by models with distinct size, we measure RoI complexity based on the bitrate allocation information from encoding metadata. Finally, we design an algorithm that prioritizes scheduling RoIs to models of the appropriate complexity, balancing accuracy and latency. Extensive experimental results show that our proposed scheme reduces latency by nearly 40% and improves 2.2% on aver",
+   "pdf": "https://arxiv.org/pdf/2503.24127v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "f12"
+   ],
+   "has_code_hint": false,
+   "url": "http://arxiv.org/abs/2503.24127v1"
+  },
+  {
+   "title": "ILACS-LGOT: A Multi-Layer Contrast Enhancement Approach for Palm-Vein Images",
+   "year": "2025",
+   "abstract": "This article presents an extended author's version based on our previous work, where we introduced the Multiple Overlapping Tiles (MOT) method for palm vein image enhancement. To better reflect the specific operations involved, we rename MOT to ILACS-LGOT (Intensity-Limited Adaptive Contrast Stretching with Layered Gaussian-weighted Overlapping Tiles). This revised terminology more accurately represents the method's approach to contrast enhancement and blocky effect mitigation. Additionally, this article provides a more detailed analysis, including expanded evaluations, graphical representations, and sample-based comparisons, demonstrating the effectiveness of ILACS-LGOT over existing methods.",
+   "pdf": "https://arxiv.org/pdf/2502.19456v2",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "f12"
+   ],
+   "has_code_hint": false,
+   "url": "http://arxiv.org/abs/2502.19456v2"
+  },
+  {
+   "title": "Perturbed Palm measures",
+   "year": "2025",
+   "abstract": "We show that the perturbation of a Palm measure by an independent process with stationary increments remains a Palm measure.",
+   "pdf": "https://arxiv.org/pdf/2508.20683v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "f12"
+   ],
+   "has_code_hint": false,
+   "url": "http://arxiv.org/abs/2508.20683v1"
+  }
+ ],
+ "semi": [
+  {
+   "title": "Semi-supervised Cervical Segmentation on Ultrasound by A Dual Framework for Neural Networks",
+   "year": "2025",
+   "abstract": "Accurate segmentation of ultrasound (US) images of the cervical muscles is crucial for precision healthcare. The demand for automatic computer-assisted methods is high. However, the scarcity of labeled data hinders the development of these methods. Advanced semi-supervised learning approaches have displayed promise in overcoming this challenge by utilizing labeled and unlabeled data. This study introduces a novel semi-supervised learning (SSL) framework that integrates dual neural networks. This SSL framework utilizes both networks to generate pseudo-labels and cross-supervise each other at the pixel level. Additionally, a self-supervised contrastive learning strategy is introduced, which employs a pair of deep representations to enhance feature learning capabilities, particularly on unlabeled data. Our framework demonstrates competitive performance in cervical segmentation tasks. Our codes are publicly available on https://github.com/13204942/SSL\\_Cervical\\_Segmentation.",
+   "pdf": "https://arxiv.org/pdf/2503.17057v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "f7"
+   ],
+   "has_code_hint": true,
+   "url": "http://arxiv.org/abs/2503.17057v1"
+  },
+  {
+   "title": "ModSSC: A Modular Framework for Semi-Supervised Classification on Heterogeneous Data",
+   "year": "2025",
+   "abstract": "Semi-supervised classification leverages both labeled and unlabeled data to improve predictive performance, but existing software support remains fragmented across methods, learning settings, and data modalities. We introduce ModSSC, an open source Python framework for inductive and transductive semi-supervised classification designed to support reproducible and controlled experimentation. ModSSC provides a modular and extensible software architecture centered on reusable semi-supervised learning components, stable abstractions, and fully declarative experiment specification. Experiments are defined through configuration files, enabling systematic comparison across heterogeneous datasets and model backbones without modifying algorithmic code. ModSSC 1.0.0 is released under the MIT license with full documentation and automated tests, and is available at https://github.com/ModSSC/ModSSC. The framework is validated through controlled experiments reproducing established semi-supervised lea",
+   "pdf": "https://arxiv.org/pdf/2512.13228v2",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "f7"
+   ],
+   "has_code_hint": true,
+   "url": "http://arxiv.org/abs/2512.13228v2"
+  },
+  {
+   "title": "PhysAstro-Pose: Physics-Inspired Semi-Supervised Human Pose Estimation in Microgravity Environments",
+   "year": "2026",
+   "abstract": "Human pose estimation in orbit is critical for astronaut health monitoring, task assistance, and intelligent human-robot interaction aboard space stations. However, in microgravity, human poses exhibit arbitrary orientations and are often affected by severe occlusion and complex background interference, while the scarcity of annotated in-orbit data makes it difficult to directly transfer models trained on ground-based datasets. Existing semi-supervised methods also lack explicit constraints from human structural topology and pose-related physical priors, which often leads to unreasonable pseudo-labels and limits performance gains. To address these issues, we propose a physics-inspired semi-supervised pose estimation framework for microgravity scenarios. Specifically, a Canonical Orientation Constraint is introduced to alleviate orientation ambiguity; a Structure-aware Pseudo-Label Refinement module is designed to improve pseudo-label quality; and an Uncertainty-guided Rotational Consis",
+   "pdf": "https://doi.org/10.3390/s26113406",
+   "doi": "10.3390/s26113406",
+   "cites": 0,
+   "hits": [
+    "f7"
+   ],
+   "has_code_hint": false,
+   "url": "https://doi.org/10.3390/s26113406"
+  },
+  {
+   "title": "Semi-supervised 2D Human Pose Estimation via Adaptive Keypoint Masking",
+   "year": "2024",
+   "abstract": "Human pose estimation is a fundamental and challenging task in computer vision. Larger-scale and more accurate keypoint annotations, while helpful for improving the accuracy of supervised pose estimation, are often expensive and difficult to obtain. Semi-supervised pose estimation tries to leverage a large amount of unlabeled data to improve model performance, which can alleviate the problem of insufficient labeled samples. The latest semi-supervised learning usually adopts a strong and weak data augmented teacher-student learning framework to deal with the challenge of \"Human postural diversity and its long-tailed distribution\". Appropriate data augmentation method is one of the key factors affecting the accuracy and generalization of semi-supervised models. Aiming at the problem that the difference of sample learning is not considered in the fixed keypoint masking augmentation method, this paper proposes an adaptive keypoint masking method, which can fully mine the information in the",
+   "pdf": "https://arxiv.org/pdf/2404.14835v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "f7"
+   ],
+   "has_code_hint": false,
+   "url": "http://arxiv.org/abs/2404.14835v1"
+  },
+  {
+   "title": "DistillLens: Symmetric Knowledge Distillation Through Logit Lens",
+   "year": "2026",
+   "abstract": "Standard Knowledge Distillation (KD) compresses Large Language Models (LLMs) by optimizing final outputs, yet it typically treats the teacher's intermediate layer's thought process as a black box. While feature-based distillation attempts to bridge this gap, existing methods (e.g., MSE and asymmetric KL divergence) ignore the rich uncertainty profiles required for the final output. In this paper, we introduce DistillLens, a framework that symmetrically aligns the evolving thought processes of student and teacher models. By projecting intermediate hidden states into the vocabulary space via the Logit Lens, we enforce structural alignment using a symmetric divergence objective. Our analysis proves that this constraint imposes a dual-sided penalty, preventing both overconfidence and underconfidence while preserving the high-entropy information conduits essential for final deduction. Extensive experiments on GPT-2 and Llama architectures demonstrate that DistillLens consistently outperform",
+   "pdf": "https://arxiv.org/pdf/2602.13567v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "f16"
+   ],
+   "has_code_hint": true,
+   "url": "http://arxiv.org/abs/2602.13567v1"
+  },
+  {
+   "title": "Human Pose Estimation Using Data Augmentation and Cross-Modal Supervision",
+   "year": "2026",
+   "abstract": "",
+   "pdf": "",
+   "doi": "10.1109/ispp69262.2026.11542939",
+   "cites": 0,
+   "hits": [
+    "f15"
+   ],
+   "has_code_hint": false,
+   "url": "https://doi.org/10.1109/ispp69262.2026.11542939"
+  },
+  {
+   "title": "Knowledge Distillation from Large Language Models for Household Energy Modeling",
+   "year": "2025",
+   "abstract": "Machine learning (ML) is increasingly vital for smart-grid research, yet restricted access to realistic, diverse data - often due to privacy concerns - slows progress and fuels doubts within the energy sector about adopting ML-based strategies. We propose integrating Large Language Models (LLMs) in energy modeling to generate realistic, culturally sensitive, and behavior-specific data for household energy usage across diverse geographies. In this study, we employ and compare five different LLMs to systematically produce family structures, weather patterns, and daily consumption profiles for households in six distinct countries. A four-stage methodology synthesizes contextual daily data, including culturally nuanced activities, realistic weather ranges, HVAC operations, and distinct `energy signatures' that capture unique consumption footprints. Additionally, we explore an alternative strategy where external weather datasets can be directly integrated, bypassing intermediate weather mod",
+   "pdf": "https://arxiv.org/pdf/2502.03034v1",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "f16"
+   ],
+   "has_code_hint": true,
+   "url": "http://arxiv.org/abs/2502.03034v1"
+  },
+  {
+   "title": "Knowledge-Driven Agentic Scientific Corpus Distillation Framework for Biomedical Large Language Models Training",
+   "year": "2025",
+   "abstract": "Corpus distillation for biomedical large language models (LLMs) seeks to address the pressing challenge of insufficient quantity and quality in open-source annotated scientific corpora, which remains a bottleneck for effective LLM training in biomedical research. This paper proposes a knowledge-driven, agentic framework for scientific corpus distillation, tailored explicitly for LLM training in the biomedical domain, addressing the challenge posed by the complex hierarchy of biomedical knowledge. Central to our approach is a collaborative multi-agent architecture, where specialized agents, each guided by the Medical Subject Headings (MeSH) hierarchy, work in concert to autonomously extract, synthesize, and self-evaluate high-quality textual data from vast scientific literature. This agentic framework collectively generates and refines domain-specific question-answer pairs, ensuring comprehensive coverage and consistency with biomedical ontologies while minimizing manual involvement. Ex",
+   "pdf": "https://arxiv.org/pdf/2504.19565v3",
+   "doi": "",
+   "cites": 0,
+   "hits": [
+    "f16"
+   ],
+   "has_code_hint": true,
+   "url": "http://arxiv.org/abs/2504.19565v3"
+  }
+ ],
+ "deploy": [
+  {
+   "title": "Real-time lightweight pose estimation for sports motion analysis on mobile and edge platforms",
+   "year": "2026",
+   "abstract": "Inderscience is a global company, a dynamic leading independent journal publisher disseminates the latest research across the broad fields of science, engineering and technology; management, public and business administration; environment, ecological economics and sustainable development; computing, ICT and internet/web services, and related areas.",
+   "pdf": "https://doi.org/10.1504/ijbidm.2026.10078556",
+   "doi": "10.1504/ijbidm.2026.10078556",
+   "cites": 0,
+   "hits": [
+    "f14"
+   ],
+   "has_code_hint": false,
+   "url": "https://doi.org/10.1504/ijbidm.2026.10078556"
+  },
+  {
+   "title": "An Accuracy Compensation Method for Lightweight Pose Estimation",
+   "year": "2026",
+   "abstract": "Recently, human pose estimation has attracted much attention due to its wide applicability in areas such as sports analysis and surveillance systems. As a representative high-accuracy approach, HRNet achieves superior performance by maintaining high-resolution representations throughout the network. However, its high computational complexity creates a strong demand for lightweight models suitable for mobile devices. In this paper, we propose an effective accuracy compensation strategy for lightweight pose estimation networks, focusing on mitigating the performance degradation caused by aggressive model simplification. Although such model simplification substantially reduces computational cost, it often leads to noticeable accuracy degradation. To address this issue, we introduce channel-wise attention via Squeeze-and-Excitation (SE) blocks and residual connections to enhance channel-wise feature recalibration and information flow, with only a marginal increase in model parameters. Expe",
+   "pdf": "https://doi.org/10.1145/3803291.3803326",
+   "doi": "10.1145/3803291.3803326",
+   "cites": 0,
+   "hits": [
+    "f14"
+   ],
+   "has_code_hint": false,
+   "url": "https://doi.org/10.1145/3803291.3803326"
+  },
+  {
+   "title": "Efficient one-shot attendance on the edge: a hybrid system for classroom biometrics",
+   "year": "2026",
+   "abstract": "Automated attendance management is a critical application of intelligent imaging in education. This paper presents a pragmatic one-shot attendance system designed as an embedded, real-time vision system for resource-constrained edge devices like the NVIDIA Jetson Nano. Our proposed system employs a carefully architected hybrid approach, combining a classical machine learning algorithm for robust, low-latency face detection with a lightweight Siamese network for scalable one-shot recognition. The face detection module uses the computationally efficient Haar Cascade classifier for high-speed performance on edge hardware. For recognition, a purpose-built Siamese neural network is fine-tuned with a contrastive loss function to learn a discriminative 128-dimensional embedding space where Euclidean distances correspond to facial similarity. This enables accurate one-shot identification from a single reference image per student, a critical requirement for practical deployment. This hybrid arc",
+   "pdf": "",
+   "doi": "10.1117/12.3109838",
+   "cites": 0,
+   "hits": [
+    "f20"
+   ],
+   "has_code_hint": false,
+   "url": "https://doi.org/10.1117/12.3109838"
+  },
+  {
+   "title": "Lightweight Speaker Identification Framework Using Deep Embeddings for Real-Time Voice Biometrics",
+   "year": "2025",
+   "abstract": "Voice biometric systems are based on speaker identification that is important for the secure and personalized human–machine interaction. But deploying reactive and reliable speaker recognition models on memory, delay, and computationally constrained edge devices still have been a problem. In this paper, we propose a lightweight speaker identification framework built on top of deep speaker embeddings, produced by a considerably smaller convolutional neural network (CNN) architecture. We use a time delayed CNN front end to extract a fixed length embedding from a variable length utterance and use average pooling and cosine similarity based classifier for low latency inference. Additionally, quantization aware training and pruning methods are used to optimize for performance at runtime, significantly reducing the model size and over 60% while retaining accuracy. The proposed model is evaluated on VoxCeleb1 and a custom low resource dataset where identified with a Top-1 accuracy of 94.2% an",
+   "pdf": "https://ecejournals.in/index.php/NJSAP/article/download/211/350",
+   "doi": "10.17051/njsap/01.01.03",
+   "cites": 0,
+   "hits": [
+    "f20"
+   ],
+   "has_code_hint": false,
+   "url": "https://ecejournals.in/index.php/NJSAP/article/view/211"
+  },
+  {
+   "title": "GU-HRNet: a lightweight multiperson pose estimation network for mobile terminals",
+   "year": "2025",
+   "abstract": "A significant number of lightweight approaches for multi-person pose estimation are built upon multibranch architectures composed entirely of Convolutional Neural Networks (CNNs). While this methodology is effective at feature extraction, its intricate and often superfluous design results in models with high latency and substantial computational costs, thereby impeding their implementation on resource-constrained edge devices. To address this challenge, this paper proposes a lightweight multi-person pose estimation network based on the U-HRNet architecture. To optimize the feature extraction module, we incorporate the GhostNetV2 block, a highly efficient convolutional unit engineered to capture salient features with minimal computational overhead. Within our proposed U-HRNet framework, we have implemented a same-scale feature connection mechanism that promotes information flow across corresponding layers, which aids in the preservation of fine-grained details. Additionally, a Squeeze-a",
+   "pdf": "",
+   "doi": "10.1117/12.3092887",
+   "cites": 0,
+   "hits": [
+    "f14"
+   ],
+   "has_code_hint": false,
+   "url": "https://doi.org/10.1117/12.3092887"
+  },
+  {
+   "title": "Behavioral Biometric Continuous Authentication for Mobile Devices with an Intelligent Personal Agent: A Systematic Review",
+   "year": "2026",
+   "abstract": "Static, one-time authentication mechanisms such as passwords and PINs are increasingly inadequate for protecting mobile devices throughout an active session. Behavioral biometric continuous authentication (BBCA) addresses this gap by passively monitoring user-specific interaction patterns—keystroke dynamics, touch and swipe gestures, gait, and motion—to verify identity on an ongoing basis. This systematic review synthesizes 80 studies selected via a PRISMA-compliant protocol from IEEE Xplore, ACM Digital Library, Scopus, ScienceDirect, Web of Science, and SpringerLink (2017–2025). We examine behavioral and multimodal biometric modalities, machine learning approaches ranging from classical classifiers to deep sequence and transformer architectures, and their integration with intelligent personal agents, wearable devices, and IoT/edge infrastructures. Security analyses cover spoofing, adversarial and generative attacks, mimicry, and model-level threats including membership inference and ",
+   "pdf": "https://doi.org/10.3390/technologies14070451",
+   "doi": "10.3390/technologies14070451",
+   "cites": 1,
+   "hits": [
+    "f20"
+   ],
+   "has_code_hint": false,
+   "url": "https://doi.org/10.3390/technologies14070451"
+  },
+  {
+   "title": "AHMAD: Adaptive Hybrid Multi-task Vision Learning with Assisted Distillation for Keypoint Detection",
+   "year": "2026",
+   "abstract": "Generalist multitasking vision models aim to unify multiple vision tasks within a single framework, enabling more efficient and versatile learning. However, handling diverse vision tasks -- spanning dense and sparse predictions -- remains challenging due to their inherently varying output structures. In this paper, we propose AHMAD, a simple yet effective framework for generalist multitask learning that integrates different key vision tasks: semantic segmentation, instance segmentation, depth estimation, keypoint detection, and object detection. Our approach incorporates these five tasks into a unified structure: a shared encoder-decoder with several lightweight task-specific projectors. Under the multitask learning paradigm, we observed a complementary performance gain, achieving a state-of-the-art PQ of 53.1 and an mIoU of 66.5 for COCO-val panoptic and semantic segmentation, respectively. Additionally, for top-down keypoint detection, which typically incurs high computational overhe",
+   "pdf": "https://arxiv.org/pdf/2609.35490",
+   "doi": "10.48550/arxiv.2609.35490",
+   "cites": 0,
+   "hits": [
+    "f17"
+   ],
+   "has_code_hint": false,
+   "url": "https://arxiv.org/abs/2609.35490"
+  },
+  {
+   "title": "Dynamic Pricing for On-Demand DNN Inference in the Edge-AI Market",
+   "year": "2025",
+   "abstract": "The convergence of edge computing and Artificial Intelligence (AI) gives rise to Edge-AI, which enables the deployment of real-time AI applications at the network edge. A key research challenge in Edge-AI is edge inference acceleration, which aims to realize low-latency high-accuracy Deep Neural Network (DNN) inference by offloading partitioned inference tasks from end devices to edge servers. However, existing research has yet to adopt a practical Edge-AI market perspective, which would explore the personalized inference needs of AI users (e.g., inference accuracy, latency, and task complexity), the revenue incentives for AI service providers that offer edge inference services, and multi-stakeholder governance within a market-oriented context. To bridge this gap, we propose an Auction-based Edge Inference Pricing Mechanism (AERIA) for revenue maximization to tackle the multi-dimensional optimization problem of DNN model partition, edge inference pricing, and resource allocation. We de",
+   "pdf": "https://arxiv.org/pdf/2503.04521v2",
+   "doi": "10.1109/TMC.2025.3647531",
+   "cites": 0,
+   "hits": [
+    "f20"
+   ],
+   "has_code_hint": false,
+   "url": "http://arxiv.org/abs/2503.04521v2"
+  }
+ ]
+}

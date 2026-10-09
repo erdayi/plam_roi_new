@@ -4,6 +4,7 @@ data/
 incoming/
 _local/
 docs/survey2026/pdfs/
+docs/survey2026b/pdfs/
 *.pt
 *.pth
 *.ckpt
